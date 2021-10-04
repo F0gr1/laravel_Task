@@ -43,7 +43,7 @@
                                 </tr>
                                 @endforeach
                             </table>
-                            <div><a href="/task/create" class="btn btn-default">新規作成</a></div>
+                            <div><a href="/home/create" class="btn btn-default">新規作成</a></div>
                         </div>
                     </div>
                 </div>
