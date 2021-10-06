@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">タスク</div>
+                <div class="card-header">プロジェクト</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -21,18 +21,19 @@
                             <table class="table text-center">
                                 <tr>
                                     <th class="text-center">ID</th>
-                                    <th class="text-center">タスク</th>
+                                    <th class="text-center">プロジェクト</th>
                                     <th class="text-center">ユーザー</th>
+                                    <th class="text-center">開始日</th>
+                                    <th class="text-center">終了日</th>
                                 </tr>
-                                @foreach($tasks as $task)
+                                @foreach($Projects as $Project)
                                 <tr>
                                     <td>
-                                        <a href="/home/{{ $task->id }}/edit">{{ $task->id }}</a>
+                                        <a href="{{ $Project->id }}/edit">{{ $Project->id }}</a>
                                     </td>
-                                    <td>
-                                        <a href="/home/task/{{$task ->id}}">{{ $task->task }}</a>
+                                    <td>{{ $Project->project }}
                                     </td>
-                                    <td>{{ $task->User }}</td>
+                                    <td>{{ $Project->User }}</td>
                                     <td>
                                     <form action="/home/{{ $task->id }}" method="post">
                                         <input type="hidden" name="_method" value="DELETE">

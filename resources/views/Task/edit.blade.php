@@ -3,7 +3,7 @@
 <div class="container ops-main">
     <div class="row">
         <div class="col-md-6">
-            <h2>書籍登録</h2>
+            <h2>タスク名</h2>
         </div>
     </div>
     <div class="row">
@@ -17,8 +17,7 @@
                     <input type="text" class="form-control" name="task" value="{{ $task->task }}">
                 </div>
                 <div class="form-group">
-                    <label for="User">名前</label>
-                    <input type="text" class="form-control" name="User" value="{{ $task->User }}">
+                    <input type="hidden" class="form-control" name="User" value="  {{Auth::user()->name }}">
                 </div>
                 
                 <button type="submit" class="btn btn-default">登録</button>

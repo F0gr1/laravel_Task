@@ -45,7 +45,6 @@ class TaskController extends Controller
         $task->task = $request->task;
         $task->User = $request->User;
         $task->save();
-    
         return redirect("/home");
     }
     public function delete($id)
