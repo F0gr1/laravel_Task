@@ -19,7 +19,6 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
-
         // 取得した値をビュー「book/edit」に渡す
         return view('Task/edit', compact('task'));
     }
@@ -33,11 +32,11 @@ class TaskController extends Controller
         return redirect("/home");
     }
     public function create()
-{
-    // 空の$bookを渡す
-    $task = new Task();
-    return view('Task/create', compact('task'));
-}
+    {
+        // 空の$bookを渡す
+        $task = new Task();
+        return view('Task/create', compact('task'));
+    }
 
     public function store(Request $request)
     {

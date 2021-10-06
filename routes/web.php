@@ -28,3 +28,8 @@ Route::put('/home/{task}' ,[App\Http\Controllers\TaskController::class , 'update
 Route::Delete('home/{task}' , [App\Http\Controllers\TaskController::class , 'delete']);
 
 Route::get('/home/task/{task}', [App\Http\Controllers\ProjectController::class, 'index'])->name('project');
+Route::get('/home/task/project/create', [App\Http\Controllers\ProjectController::class, 'create']);
+Route::post('/home/task/project',[App\Http\Controllers\ProjectController::class, 'store']);
+Route::get('/home/task/{project}/edit' , [App\Http\Controllers\ProjectController::class , 'edit']);
+Route::put('/home/task/project/' ,[App\Http\Controllers\ProjectController::class , 'update']);
+Route::Delete('home/task/project/{project}' , [App\Http\Controllers\ProjectController::class , 'delete']);
