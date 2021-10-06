@@ -25,15 +25,15 @@
                     <input type="text" class="form-control" name="User" value="{{ $Project->User }}">
                 </div>
                 <div class="form-group">
-                    <label for="name">開始時刻</label>
-                    <input type="text" class="form-control" name="start_date" value="{{ $Project->start_date }}">
+                <label for="User">開始日</label>
+                    <input type="date" class="form-control" name="start_date" value="{{ $Project->start_date }}">
                 </div>
                 <div class="form-group">
-                    <label for="User">終了時刻</label>
-                    <input type="text" class="form-control" name="end_date" value="{{ $Project->end_date }}">
+                    <label for="User">終了日</label>
+                    <input type="date" class="form-control" name="end_date" value="{{ $Project->end_date }}">
                 </div>
                 <button type="submit" class="btn btn-default">登録</button>
-                <a href="/home/task/{{$Project->id}}/">戻る</a>
+                <a href="/home/">戻る</a>
             </form>
         </div>
     </div>

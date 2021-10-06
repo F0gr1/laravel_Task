@@ -23,18 +23,18 @@
                                     <th class="text-center">ID</th>
                                     <th class="text-center">プロジェクト</th>
                                     <th class="text-center">ユーザー</th>
-                                    <th class="text-center">開始日</th>
-                                    <th class="text-center">終了日</th>
+                                    <th class="text-center">期間</th>
+                                    <th class="text-center">削除</th>
                                 </tr>
                                 @foreach($Projects as $Project)
                                 <tr>
                                     <td>
                                         <a href="{{ $Project->id }}/edit">{{ $Project->id }}</a>
                                     </td>
-                                    <td>{{ $Project->project }}
-                                    </td>
+                                    <td>{{ $Project->project }}</td>
                                     <td>{{ $Project->User }}</td>
-                                    <td>
+                                    <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
+                                    <td>    
                                     <form action="/home/{{ $Project->id }}" method="post">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">

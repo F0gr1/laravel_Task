@@ -20,9 +20,10 @@
                         <div class="col-md-11 col-md-offset-1">
                             <table class="table text-center">
                                 <tr>
-                                    <th class="text-center">ID</th>
-                                    <th class="text-center">タスク</th>
-                                    <th class="text-center">ユーザー</th>
+                                    <th class="text-center">@sortablelink('id' , 'ID')</th>
+                                    <th class="text-center">@sortablelink('task','タスク')</th>
+                                    <th class="text-center">@sortablelink('User' ,'ユーザー')</th>
+                                    <th class="text-center">削除</th>
                                 </tr>
                                 @foreach($tasks as $task)
                                 <tr>
