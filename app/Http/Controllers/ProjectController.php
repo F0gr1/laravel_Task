@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Project;
+use App\Models\Task;
+use Illuminate\Support\Facades\DB;
 class ProjectController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        $Projects = Project::all();
-        return view('Project/index', compact('Projects'));
+        $Task = Task::findOrFail($id);
+        $Projects = DB::table('projects')->where('taskId' , $id)->get();
+        return view('Project/index', compact('Projects' , 'Task'));
     }
     public function edit($id)
     {
@@ -26,13 +29,14 @@ class ProjectController extends Controller
         $Projects->end_date = $request->end_date;
         $Projects->save();
 
-        return redirect("/home/task/{task}");
+        return redirect("/home");
     }
-    public function create()
+    public function create($id)
     {
          // 空の$bookを渡す
         $Project = new Project();
-        return view('Project/create', compact('Project'));
+        $Task = Task::findOrFail($id);
+        return view('Project/create', compact('Project', 'Task'));
     }
 
     public function store(Request $request)
@@ -51,7 +55,7 @@ class ProjectController extends Controller
         $task = Project::findOrFail($id);
         $task->delete();
     
-        return redirect("/home/{task}");
+        return redirect("/home/");
     }
 
 }

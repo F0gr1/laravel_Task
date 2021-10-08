@@ -29,13 +29,13 @@
                                 @foreach($Projects as $Project)
                                 <tr>
                                     <td>
-                                        <a href="{{ $Project->id }}/edit">{{ $Project->id }}</a>
+                                        <a href="/home/task/{{ $Project->id }}/edit">{{ $Project->id }}</a>
                                     </td>
                                     <td>{{ $Project->project }}</td>
                                     <td>{{ $Project->User }}</td>
                                     <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                     <td>    
-                                    <form action="/home/{{ $Project->id }}" method="post">
+                                    <form action="/home/task/project/{{ $Project->id }}" method="post">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <button type="submit" class="btn btn-xs btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash"></span></button>
@@ -44,7 +44,7 @@
                                 </tr>
                                 @endforeach
                             </table>
-                            <div><a href="/home/task/project/create" class="btn btn-default">新規作成</a></div>
+                            <div><a href="/home/task/project/create/{{$Task -> id}}" class="btn btn-default">新規作成</a></div>
                         </div>
                     </div>
                 </div>
