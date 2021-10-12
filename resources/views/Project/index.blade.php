@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">プロジェクト</div>
 
@@ -17,12 +17,13 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-11 col-md-offset-1">
+                        <div class="col-md-10 col-md-offset-1312">
                             <table class="table text-center">
                                 <tr>
                                     <th class="text-center">ID</th>
                                     <th class="text-center">プロジェクト</th>
                                     <th class="text-center">ユーザー</th>
+                                    <th class="text-center">メモ</th>
                                     <th class="text-center">期間</th>
                                     <th class="text-center">削除</th>
                                 </tr>
@@ -33,6 +34,7 @@
                                     </td>
                                     <td>{{ $Project->project }}</td>
                                     <td>{{ $Project->User }}</td>
+                                    <td>{{$Project->memo}}</td>
                                     <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                     <td>    
                                     <form action="/home/task/project/{{ $Project->id }}" method="post">
