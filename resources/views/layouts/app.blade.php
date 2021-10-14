@@ -21,10 +21,9 @@
     <link href="{{ asset('css/index_app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
-</head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm " >
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                 </a>
