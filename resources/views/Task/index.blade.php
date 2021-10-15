@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<link href="{{ asset('css/index_app.css') }}" rel="stylesheet">
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,8 +16,7 @@
                 </div>
 
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
+                   <div class="row">
                             <table class="table text-center">
                                 <tr>
                                     <th class="text-center">@sortablelink('id' , 'ID')</th>
@@ -44,8 +43,7 @@
                                 </tr>
                                 @endforeach
                             </table>
-                            <div><a href="/home/create" class="btn btn-default">新規作成</a></div>
-                        </div>
+                            <div><a href="/home/create" class="btn btn-outline-success">新規作成</a></div>
                     </div>
                 </div>
             </div>

@@ -1,3 +1,5 @@
+<link href="{{ asset('css/main.css') }}" rel="stylesheet">
+
 <div class="container ops-main">
     <div class="row">
         <div class="col-md-6">
