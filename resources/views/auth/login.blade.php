@@ -73,6 +73,7 @@
                                                 {{ __('Forgot Your Password?') }}
                                             </a>
                                         @endif
+                                        <a class="btn btn-outline-success" href="{{ route('register') }}">{{ "新規登録の方"}}</a>
                                 </div>
                             </div>
                         </form> 
