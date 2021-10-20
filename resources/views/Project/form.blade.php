@@ -34,8 +34,12 @@
                         <input type="text" class="form-control" name="User" value="{{ $Project->User }}">
                     </div>
                     <div class="form-group">
-                        <label for="memo">概要</label>
+                        <label for="memo">内容</label>
                         <input type="text" class="form-control" name="memo" value="{{ $Project->memo }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="memo">進捗具合</label>
+                        <input type="text" class="form-control" name="progress" value="{{ $Project->progress }}"> 
                     </div>
                     <div class="form-group">
                     <label for="User">開始日</label>

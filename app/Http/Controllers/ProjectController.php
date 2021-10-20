@@ -26,6 +26,7 @@ class ProjectController extends Controller
         $Projects->project = $request->project;
         $Projects->User = $request->User;
         $Projects->memo = $request->memo;
+        $Projects->progress= $request->progress;
         $Projects->start_date = $request->start_date;
         $Projects->end_date = $request->end_date;
         $Projects->save();
@@ -46,6 +47,7 @@ class ProjectController extends Controller
         $Projects->project = $request->project;
         $Projects->taskId = $request->taskId;
         $Projects->memo = $request->memo;
+        $Projects->progress = $request->progress;
         $Projects->User = $request->User;
         $Projects->start_date = $request->start_date;
         $Projects->end_date = $request->end_date;
