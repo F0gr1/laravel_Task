@@ -31,3 +31,4 @@ Route::post('/home/task/{task}',[App\Http\Controllers\ProjectController::class, 
 Route::get('/home/task/{project}/edit' , [App\Http\Controllers\ProjectController::class , 'edit']);
 Route::put('/home/task/{project}' ,[App\Http\Controllers\ProjectController::class , 'update']);
 Route::Delete('home/task/project/{project}' , [App\Http\Controllers\ProjectController::class , 'delete']);
+Route::get('/home/task/{task}/detail/{project}' , [App\Http\Controllers\ProjectController::class, 'detail']);
