@@ -23,7 +23,8 @@
                                     <th class="text-center">ID</th>
                                     <th class="text-center">プロジェクト</th>
                                     <th class="text-center">ユーザー</th>
-                                    <th class="text-center">メモ</th>
+                                    <th class="text-center">内容</th>
+                                    <th class="text-center">進捗</th>
                                     <th class="text-center">期間</th>
                                     <th class="text-center">削除</th>
                                 </tr>
@@ -35,6 +36,7 @@
                                     <td>{{ $Project->project }}</td>
                                     <td>{{ $Project->User }}</td>
                                     <td>{{$Project->memo}}</td>
+                                    <td>{{$Project->progress}}%</td>
                                     <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                     <td>    
                                     <form action="/home/task/project/{{ $Project->id }}" method="post">
