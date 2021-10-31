@@ -15,9 +15,8 @@ class ProjectController extends Controller
         return view('Project/index', compact('Projects' , 'Task'));
     }
     public function detail($id){
-        $detail = Project::findOrFail($id);
-
-        return view('Project/detail');
+        $Project = Project::findOrFail($id);
+        return view('Project/detail',compact('Project'));
 
     }
     public function edit($id)
