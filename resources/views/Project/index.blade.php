@@ -23,7 +23,6 @@
                                     <th class="text-center">ID</th>
                                     <th class="text-center">プロジェクト</th>
                                     <th class="text-center">ユーザー</th>
-                                    <th class="text-center">内容</th>
                                     <th class="text-center">進捗</th>
                                     <th class="text-center">期間</th>
                                     <th class="text-center">削除</th>
@@ -33,11 +32,10 @@
                                     <td>
                                         <a href="/home/task/{{ $Project->id }}/edit">{{ $Project->id }}</a>
                                     </td>
-                                    <td>{{ $Project->project }}</td>
-                                    <td>{{ $Project->User }}</td>
-                                    <td>{{$Project->memo}}</td>
-                                    <td>{{$Project->progress}}%</td>
-                                    <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
+                                        <td><a href="/home/task/{{ $Project->id }}/detail">{{ $Project->project }}</a></td>
+                                        <td>{{ $Project->User }}</td>
+                                        <td>{{$Project->progress}}%</td>
+                                        <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                     <td>    
                                     <form action="/home/task/project/{{ $Project->id }}" method="post">
                                         <input type="hidden" name="_method" value="DELETE">
@@ -59,4 +57,8 @@
 @endsection
 
 <script>
+    document.getElementById("jump-detail").onclick = function() {
+        window.location.href = 'home/task/{{$Project->id}}/detail';
+        alert("aaa");
+}
     </script>
