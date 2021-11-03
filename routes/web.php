@@ -32,4 +32,6 @@ Route::get('/home/task/{project}/edit' , [App\Http\Controllers\ProjectController
 Route::put('/home/task/{project}' ,[App\Http\Controllers\ProjectController::class , 'update']);
 Route::Delete('home/task/project/{project}' , [App\Http\Controllers\ProjectController::class , 'delete']);
 
+Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
+
 Route::get('/users/add' , [App\Http\Controllers\UseraddController::class,'add'])->name('user');
