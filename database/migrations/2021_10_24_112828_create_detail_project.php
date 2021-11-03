@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProjectTable extends Migration
+class CreateDetailProject extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,12 @@ class AddProjectTable extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table ->string('memo');
+        Schema::create('detail_project', function (Blueprint $table) {
+            $table->increments('id');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->String('project_memo',200);
+            
         });
     }
 
@@ -25,8 +29,6 @@ class AddProjectTable extends Migration
      */
     public function down()
     {
-        Schema::table('project', function (Blueprint $table) {
-            $table->dropColumn('memo');
-        });
+        Schema::dropIfExists('detail_project');
     }
 }

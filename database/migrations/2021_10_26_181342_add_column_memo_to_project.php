@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProjectTable extends Migration
+class AddColumnMemoToProject extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddProjectTable extends Migration
     public function up()
     {
         Schema::table('projects', function (Blueprint $table) {
-            $table ->string('memo');
+            $table->string('memo',250);
         });
     }
 
@@ -25,7 +25,7 @@ class AddProjectTable extends Migration
      */
     public function down()
     {
-        Schema::table('project', function (Blueprint $table) {
+        Schema::table('projects', function (Blueprint $table) {
             $table->dropColumn('memo');
         });
     }

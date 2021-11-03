@@ -14,6 +14,11 @@ class ProjectController extends Controller
         $Projects = DB::table('projects')->where('taskId' , $id)->get();
         return view('Project/index', compact('Projects' , 'Task'));
     }
+    public function detail($id){
+        $Project = Project::findOrFail($id);
+        return view('Project/detail',compact('Project'));
+
+    }
     public function edit($id)
     {
         $Project = Project::findOrFail($id);
