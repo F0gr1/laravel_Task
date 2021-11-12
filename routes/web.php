@@ -34,4 +34,6 @@ Route::Delete('home/task/project/{project}' , [App\Http\Controllers\ProjectContr
 
 Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
 
-Route::get('/users/add' , [App\Http\Controllers\UseraddController::class,'add'])->name('user');
+// Route::get('/users/add' , [App\Http\Controllers\UseraddController::class,'add'])->name('user');
+
+Route::post('register/pre_check', [App\Http\Controllers\Auth\RegisterController::class,'pre_check'])->name('register.pre_check');
