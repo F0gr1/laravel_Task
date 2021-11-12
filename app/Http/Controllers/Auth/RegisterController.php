@@ -8,6 +8,8 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+// リクエスト宣言必要
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -70,4 +72,15 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
+    public function pre_check(Request $request){
+        $this->validator($request->all())->validate();
+        //flash data
+        $request->flashOnly('email');
+
+        $bridge_request = $request->all();
+        $bridge_request['password_mask'] ='******';
+
+        return view('auth.register_check')->with($bridge_request);
+        }
+    
 }
