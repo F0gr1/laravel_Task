@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class TaskController extends Controller
 {
     public function __construct()
@@ -13,7 +15,12 @@ class TaskController extends Controller
 
     public function index()
     {
-        $tasks = Task::orderBy('id', 'asc')->sortable()->paginate(50);
+        $userId = Auth::id();
+        // $tasks = Task::orderBy('id', 'asc')->sortable()->paginate(50);
+        $tasks = DB::table('tasks')
+        ->join('ShowTasks as S','S.taskId','=','tasks.id')
+        ->where('S.userId' , '=' , $userId)
+        ->get();
         return view('Task/index', compact('tasks'));
     }
     public function edit($id)
