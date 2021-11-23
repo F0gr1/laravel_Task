@@ -26,8 +26,9 @@ class TaskController extends Controller
     public function edit($id)
     {
         $task = Task::findOrFail($id);
+        $userName = Auth::user();
         // 取得した値をビュー「book/edit」に渡す
-        return view('Task/edit', compact('task'));
+        return view('Task/edit', compact('task' , 'userName'));
     }
     public function update(Request $request , $id)
     {
@@ -42,7 +43,8 @@ class TaskController extends Controller
     {
         // 空の$bookを渡す
         $task = new Task();
-        return view('Task/create', compact('task'));
+        $userName = Auth::user();
+        return view('Task/create', compact('task' , 'userName'));
     }
 
     public function store(Request $request)
