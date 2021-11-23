@@ -18,10 +18,10 @@ class TaskTableSeeder extends Seeder
         // 初期データ用意（列名をキーとする連想配列）
         $tasks = [
                   ['task' => 'Test',
-                   'User' => 'Vold43ST'],
+                  'User' => 'Vold43ST'],
                   ['task' => 'Test2',
-                   'User'=> 'Shion'],
-                 ];
+                  'User'=> 'Shion'],
+                ];
     
         // 登録
         foreach($tasks as $task) {

@@ -16,23 +16,23 @@
                 </div>
 
                 <div class="card-body">
-                   <div class="row">
+                    <div class="row">
                             <table class="table text-center">
                                 <tr>
-                                    <th class="text-center">@sortablelink('id' , 'ID')</th>
-                                    <th class="text-center">@sortablelink('task','タスク')</th>
-                                    <th class="text-center">@sortablelink('User' ,'ユーザー')</th>
+                                    <th class="text-center">タスク</th>
+                                    <th class="text-center">ユーザー</th>
+                                    <th class="text-center">Edit</th>
                                     <th class="text-center">削除</th>
                                 </tr>
                                 @foreach($tasks as $task)
                                 <tr>
                                     <td>
-                                        <a href="/home/{{ $task->id }}/edit">{{ $task->id }}</a>
-                                    </td>
-                                    <td>
                                         <a href="/home/task/{{$task ->id}}">{{ $task->task }}</a>
                                     </td>
                                     <td>{{ $task->User }}</td>
+                                    <td>
+                                        <a href="/home/{{ $task->id }}/edit">編集</a>
+                                    </td>
                                     <td>
                                     <form action="/home/{{ $task->id }}" method="post">
                                         <input type="hidden" name="_method" value="DELETE">
