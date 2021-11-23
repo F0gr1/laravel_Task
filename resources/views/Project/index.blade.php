@@ -20,22 +20,22 @@
                         <div class="col-md-10 col-md-offset-1">
                             <table class="table text-center">
                                 <tr>
-                                    <th class="text-center">ID</th>
                                     <th class="text-center">プロジェクト</th>
                                     <th class="text-center">ユーザー</th>
                                     <th class="text-center">進捗</th>
                                     <th class="text-center">期間</th>
+                                    <th class="text-center">編集</th>
                                     <th class="text-center">削除</th>
                                 </tr>
                                 @foreach($Projects as $Project)
                                 <tr>
-                                    <td>
-                                        <a href="/home/task/{{ $Project->id }}/edit">{{ $Project->id }}</a>
-                                    </td>
                                         <td><a href="/home/task/{{ $Project->id }}/detail">{{ $Project->project }}</a></td>
                                         <td>{{ $Project->User }}</td>
-                                        <td>{{$Project->progress}}%</td>
+                                        <td>{{$Project->progress}}</td>
                                         <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
+                                        <td>
+                                        <a href="/home/task/{{ $Project->id }}/edit">編集</a>
+                                    </td>
                                     <td>    
                                     <form action="/home/task/project/{{ $Project->id }}" method="post">
                                         <input type="hidden" name="_method" value="DELETE">
