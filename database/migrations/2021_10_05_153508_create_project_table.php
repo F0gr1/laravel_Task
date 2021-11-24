@@ -15,9 +15,10 @@ class CreateProjectTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->String('taskId', 50);
-            $table->String('project' , 50);
-            $table->String('User' , 50);
+            $table->string('taskId', 50);
+            $table->string('project' , 50);
+            $table->string('User' , 50);
+            $table->string('memo');
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();
