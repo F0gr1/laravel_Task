@@ -20,14 +20,16 @@ class ProjectSeeder extends Seeder
                             'project'=>'テスト',
                             'User'=>'サトシ',
                             'memo'=>'テスト用のデータ',
+                            'progress' => '0',
                             'start_date'=>'2021-10-15',
                             'end_date'=>'2021-10-16'
                         ],
                         [
-                            'taskId'=>'1',
+                            'taskId'=>'2',
                             'project'=>'テスト2',
                             'User'=>'サトシ',
                             'memo'=>'テスト用のデータ',
+                            'progress' => '100',
                             'start_date'=>'2021-10-15',
                             'end_date'=>'2021-10-16'
                         ]
@@ -35,6 +37,6 @@ class ProjectSeeder extends Seeder
 
         foreach($projects as $project) {
             DB::table('projects')->insert($project);
-          }
+        }
     }
 }
