@@ -8,7 +8,6 @@
                 <div class="card-header">仮会員登録完了</div>
 
                 <div class="card-body">
-                <form method="POST" action="{{ route('registered') }}">
                     <p>この度は、ご登録いただき、誠にありがとうございます。</p>
                     <p>
                         ご本人様確認のため、ご登録いただいたメールアドレスに、<br>

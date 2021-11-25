@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Validator;
 // リクエスト宣言必要
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
-
-
+use App\Mail\EmailVerification;
 class RegisterController extends Controller
 {
     /*
@@ -71,16 +70,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user = User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'email_verify_token' => base64_encode($data['email']),
-        ]);
-
-        $email = new ContactMail($user);
-        Mail::to($user->email)->send($email);
-
-        return $user;
+                        'name' => $data['name'],
+                        'email' => $data['email'],
+                        'password' => Hash::make($data['password']),
+                        'email_verify_token' => base64_encode($data['email']),
+                    ]);
+            
+                    $email = new ContactMail($user);
+                    Mail::to($user->email)->send($email);
+            
+                    return $user;
     }
     public function pre_check(Request $request){
         $this->validator($request->all())->validate();
@@ -91,11 +90,10 @@ class RegisterController extends Controller
         $bridge_request['password_mask'] ='******';
 
         return view('auth.register_check')->with($bridge_request);
-        }
+    }
     public function register(Request $request)
     {
         event(new Registered($user = $this->create( $request->all() )));
-
         return view('auth.registered');
     }
     public function showForm($email_token)
