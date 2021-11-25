@@ -33,9 +33,8 @@ class ContactMail extends Mailable
     public function build()
     {
         return $this
-        ->view('view.name')
-        ->subject('仮登録の完了をお知らせします！')
-        ->with(['token' =>$this->user->email_verify_token]);
-
+        ->subject('【site】仮登録が完了しました')
+        ->view('auth.email.pre_register')
+        ->with(['token' => $this->user->email_verify_token,]);
     }
 }
