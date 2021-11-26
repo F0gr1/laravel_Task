@@ -37,8 +37,6 @@ Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectControlle
 // Route::get('/users/add' , [App\Http\Controllers\UseraddController::class,'add'])->name('user');
 
 Route::post('register/pre_check', [App\Http\Controllers\Auth\RegisterController::class,'pre_check'])->name('register.pre_check');
-
-
 // Route::post('register/pre_check/check_register',[App\Http\Controllers\Auth\RegisterController::class,'registered'])->name('registered');
 // Route::get('register/pre_check/check_register',[App\Http\Controllers\Auth\RegisterController::class,'registered'])->name('registered');
 Route::get('register/verify/{token}', [App\Http\Controllers\Auth\RegisterController::class,'showForm']);
