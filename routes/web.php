@@ -33,3 +33,5 @@ Route::put('/home/task/{project}' ,[App\Http\Controllers\ProjectController::clas
 Route::Delete('home/task/project/{project}' , [App\Http\Controllers\ProjectController::class , 'delete']);
 
 Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
+
+Route::get('user/add',[App\Http\Controllers\ShowTaskController::class, 'add']);
