@@ -20,6 +20,7 @@ class GoogleLoginController extends Controller
     public function handleGoogleCallback()
     {
         // Google 認証後の処理
+        dd($gUser); 
         $gUser = Socialite::driver('google')->stateless()->user();
         $user = User::where('email' , $gUser->email)->first();
         if($user == null){
@@ -27,7 +28,6 @@ class GoogleLoginController extends Controller
         }
         \Auth::login($user, true);
         return redirect('/book');       
-    dd($gUser); 
     }
     public function createUserByGoogle($gUser)
     {
