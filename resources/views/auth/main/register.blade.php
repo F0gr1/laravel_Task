@@ -14,7 +14,7 @@
 
                     @empty($message)
                         <div class="card-body">
-                            <form method="POST" action="{{ route('register.pre_check') }}">
+                            <form method="POST" action="{{ route('register.main.check') }}">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">名前</label>
