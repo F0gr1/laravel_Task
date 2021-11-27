@@ -58,9 +58,8 @@ class TaskController extends Controller
         $taskId = DB::table('tasks')->get()->count();
         $showTask = new ShowTask();
         $id = Auth::id();
-        $user = Auth::user();
         $showTask-> taskId = $taskId;
-        $showTask->userId =$user->id;
+        $showTask->userId =$id;
         $showTask -> save();
 
         return redirect("/home");
