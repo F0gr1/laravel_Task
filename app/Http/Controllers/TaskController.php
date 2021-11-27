@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\ShowTask;
 class TaskController extends Controller
 {
     public function __construct()
@@ -53,6 +54,15 @@ class TaskController extends Controller
         $task->task = $request->task;
         $task->User = $request->User;
         $task->save();
+        
+        $taskId = DB::table('tasks')->get()->count();
+        $showTask = new ShowTask();
+        $id = Auth::id();
+        $user = Auth::user();
+        $showTask-> taskId = $taskId;
+        $showTask->userId =$user->id;
+        $showTask -> save();
+
         return redirect("/home");
     }
     public function delete($id)
