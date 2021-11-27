@@ -29,5 +29,9 @@ return [
         'secret' => env('AWS_SECRET_ACCESS_KEY'),
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
-
+    'google' => [
+        'client_id' => '886766845893-2oa9jf9kh3eb22ancgqrde32217o4fp8.apps.googleusercontent.com',
+        'client_secret' => 'iqJaIu6XSu82ZrV6uj1caDPv',
+        'redirect' => 'https://tasks.atj-tech.work/login/google/callback',
+    ],
 ];

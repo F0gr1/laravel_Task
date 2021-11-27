@@ -33,3 +33,6 @@ Route::put('/home/task/{project}' ,[App\Http\Controllers\ProjectController::clas
 Route::Delete('home/task/project/{project}' , [App\Http\Controllers\ProjectController::class , 'delete']);
 
 Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
+
+Route::get('/auth/redirect', [App\Http\Controllers\GoogleLoginController::class, 'redirectToGoogle']);
+Route::get('/login/google/callback', [App\Http\Controllers\GoogleLoginController::class, 'handleGoogleCallback']);
