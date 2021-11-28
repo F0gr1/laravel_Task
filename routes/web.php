@@ -40,5 +40,5 @@ Route::post('register/pre_check', [App\Http\Controllers\Auth\RegisterController:
 // Route::post('register/pre_check/check_register',[App\Http\Controllers\Auth\RegisterController::class,'registered'])->name('registered');
 // Route::get('register/pre_check/check_register',[App\Http\Controllers\Auth\RegisterController::class,'registered'])->name('registered');
 Route::get('register/verify/{token}', [App\Http\Controllers\Auth\RegisterController::class,'showForm']);
-Route::post('register/main_check',[App\Http\Controllers\Auth\RegisterController::class,'mainCheck'])->name('register.main.check');
+//Route::post('register/main_check',[App\Http\Controllers\Auth\RegisterController::class,'mainCheck'])->name('register.main.check');
 Route::post('register/main_register',[App\Http\Controllers\Auth\RegisterController::class,'mainRegister'])->name('register.main.registered');

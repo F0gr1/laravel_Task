@@ -14,13 +14,13 @@
 
                     @empty($message)
                         <div class="card-body">
-                            <form method="POST" action="{{ route('register.main.check') }}">
+                            <form method="POST" action="{{ route('register.main.registered') }}">
                                 @csrf
                                 <input type="hidden" name="email_token" value="{{ $email_token }}">
                                 
                                 
 
-                                <div class="form-group row">
+                                <!--<div class="form-group row">
                                     <label for="name_pronunciation"
                                            class="col-md-4 col-form-label text-md-right">フリガナ</label>
 
@@ -98,7 +98,7 @@
                                             @endif
                                         </div>
                                     </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
