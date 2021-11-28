@@ -16,21 +16,9 @@
                         <div class="card-body">
                             <form method="POST" action="{{ route('register.main.check') }}">
                                 @csrf
-                                <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">名前</label>
-                                    <div class="col-md-6">
-                                        <input
-                                            id="name" type="text"
-                                            class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                            name="name" value="{{ old('name') }}" required>
-
-                                        @if ($errors->has('name'))
-                                            <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                            </span>
-                                        @endif
-                                    </div>
-                                </div>
+                                <input type="hidden" name="email_token" value="{{ $email_token }}">
+                                
+                                
 
                                 <div class="form-group row">
                                     <label for="name_pronunciation"
