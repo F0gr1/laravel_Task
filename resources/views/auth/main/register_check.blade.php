@@ -13,7 +13,7 @@
 
                         
 
-                        <div class="form-group row">
+                        <!--<div class="form-group row">
                             <label for="name_pronunciation" class="col-md-4 col-form-label text-md-right">フリガナ</label>
                             <div class="col-md-6">
                                 <span class="">{{$user->name_pronunciation}}</span>
@@ -31,7 +31,7 @@
                                 <span class="">{{$user->birth_day}}日</span>
                                 <input type="hidden" name="birth_day" value="{{$user->birth_day}}">
                             </div>
-                        </div>
+                        </div>-->
 
 
                         <div class="form-group row mb-0">
