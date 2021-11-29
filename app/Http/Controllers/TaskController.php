@@ -16,7 +16,6 @@ class TaskController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        // $tasks = Task::orderBy('id', 'asc')->sortable()->paginate(50);
         $tasks = DB::table('tasks')
         ->join('ShowTasks as S','S.taskId','=','tasks.id')
         ->where('S.userId' , '=' , $userId)
