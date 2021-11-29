@@ -14,8 +14,7 @@ class ShowTaskSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('ShowTasks')->truncate();
-
+        DB::table('show_tasks')->truncate();
         // 初期データ用意（列名をキーとする連想配列）
         for ($i = 1; $i <= 10; $i++) {
             $STasks = [
@@ -24,7 +23,7 @@ class ShowTaskSeeder extends Seeder
                             'taskId' => $i
                         ]
             ];
-            DB::table('ShowTasks')->insert($STasks);
+            DB::table('show_tasks')->insert($STasks);
         }
     
         // 登録

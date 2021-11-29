@@ -13,10 +13,11 @@ class ShowTask extends Migration
      */
     public function up()
     {
-        Schema::create('ShowTasks', function (Blueprint $table) {
+        Schema::create('show_tasks', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('userId');
-            $table->integer('taskId');        
+            $table->integer('taskId');  
+            $table->timestamps();      
         });
     }
 
@@ -27,6 +28,6 @@ class ShowTask extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ShowTasks');
+        Schema::dropIfExists('show_tasks');
     }
 }
