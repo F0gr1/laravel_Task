@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnMemoToProject extends Migration
+class ShowTask extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddColumnMemoToProject extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->string('memo',250);
+        Schema::create('ShowTasks', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('userId');
+            $table->integer('taskId');        
         });
     }
 
@@ -25,8 +27,6 @@ class AddColumnMemoToProject extends Migration
      */
     public function down()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn('memo');
-        });
+        Schema::dropIfExists('ShowTasks');
     }
 }
