@@ -38,15 +38,15 @@
                         <input type="text" class="form-control" name="memo" value="{{ $Project->memo }}">
                     </div>
                     <div class="form-group">
-                        <label for="memo">進捗具合</label>
+                        <label for="progress">進捗具合</label>
                         <input type="text" class="form-control" name="progress" value="{{ $Project->progress }}"> 
                     </div>
                     <div class="form-group">
-                    <label for="User">開始日</label>
+                    <label for="start_date">開始日</label>
                         <input type="date" class="form-control" name="start_date" value="{{ $Project->start_date }}">
                     </div>
                     <div class="form-group">
-                        <label for="User">終了日</label>
+                        <label for="end_date">終了日</label>
                         <input type="date" class="form-control" name="end_date" value="{{ $Project->end_date }}">
                     </div>
                     <button type="submit" class="btn btn-default">登録</button>

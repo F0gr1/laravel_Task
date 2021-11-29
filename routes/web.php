@@ -41,3 +41,4 @@ Route::post('register/pre_check', [App\Http\Controllers\Auth\RegisterController:
 Route::get('register/verify/{token}', [App\Http\Controllers\Auth\RegisterController::class,'showForm']);
 //Route::post('register/main_check',[App\Http\Controllers\Auth\RegisterController::class,'mainCheck'])->name('register.main.check');
 Route::post('register/main_register',[App\Http\Controllers\Auth\RegisterController::class,'mainRegister'])->name('register.main.registered');
+Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
