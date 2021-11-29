@@ -7,6 +7,8 @@ use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\ShowTask;
+use Illuminate\Support\Facades\App; 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class TaskController extends Controller
 {
     public function __construct()
@@ -19,7 +21,7 @@ class TaskController extends Controller
         $userId = Auth::id();
         // $tasks = Task::orderBy('id', 'asc')->sortable()->paginate(50);
         $tasks = DB::table('tasks')
-        ->join('ShowTasks as S','S.taskId','=','tasks.id')
+        ->join('show_tasks as S','S.taskId','=','tasks.id')
         ->where('S.userId' , '=' , $userId)
         ->get();
         return view('Task/index', compact('tasks'));
@@ -55,10 +57,10 @@ class TaskController extends Controller
         $task->User = $request->User;
         $task->save();
         
-        $taskId = DB::table('tasks')->get()->count();
+        $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
         $showTask = new ShowTask();
         $id = Auth::id();
-        $showTask-> taskId = $taskId;
+        $showTask-> taskId = $taskId->id;
         $showTask->userId =$id;
         $showTask -> save();
 
@@ -66,9 +68,12 @@ class TaskController extends Controller
     }
     public function delete($id)
     {
-        $task = Task::findOrFail($id);
-        $task->delete();
-    
+        try{
+            Task::findOrFail($id)->delete();
+            ShowTask::findOrFail($id)->delete();
+        }catch(ModelNotFoundException $e){
+            App::abort(404);
+        }
         return redirect("/home");
     }
 
