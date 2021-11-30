@@ -14,14 +14,14 @@
                 <form action="/user/add/" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group flex">
-                    <select name="name_id[]"   class='form-control'>
+                    <select name="userId"   class='form-control' value='userId'>
                         @foreach($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option value="$user -> id"　name="user">{{ $user->name}}</option>
                         @endforeach
                     </select>
-                    <select name="job_id[]"  class='form-control'>
+                    <select name="job_id[]"  class='form-control' value='taskid'>
                         @foreach($tasks as $task )
-                            <option value="{{ $task->id }}">{{ $task->task }}</option>
+                            <option value="{{ $task->id }}" name="task">{{ $task->task }}</option>
                         @endforeach 
                     </select>
                         <button type="submit" class="btn btn-default">登録</button>
