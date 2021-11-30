@@ -37,5 +37,5 @@ Route::get('register/verify/{token}', [App\Http\Controllers\Auth\RegisterControl
 Route::post('register/main_register',[App\Http\Controllers\Auth\RegisterController::class,'mainRegister'])->name('register.main.registered');
 
 
-Route::get('user/addPage',[App\Http\Controllers\ShowTaskController::class, 'app']);
+Route::get('user/addPage',[App\Http\Controllers\ShowTaskController::class, 'add']);
 Route::post('user/add',[App\Http\Controllers\ShowTaskController::class, 'store']);
