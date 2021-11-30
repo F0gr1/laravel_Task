@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::redirect('/' , 'login');
 Auth::routes(['verify' => true]);
-
 Route::get('/home', [App\Http\Controllers\TaskController::class, 'index'])->name('home')->middleware('verified');;
 Route::get('/home/create', [App\Http\Controllers\TaskController::class, 'create']);
 Route::post('/home',[App\Http\Controllers\TaskController::class, 'store']);
