@@ -16,16 +16,14 @@ class TaskTableSeeder extends Seeder
         DB::table('tasks')->truncate();
 
         // 初期データ用意（列名をキーとする連想配列）
-        $tasks = [
-                  ['task' => 'Test',
-                  'User' => 'Vold43ST'],
-                  ['task' => 'Test2',
-                  'User'=> 'Shion'],
-                ];
-    
-        // 登録
-        foreach($tasks as $task) {
-          DB::table('tasks')->insert($task);
-        }
+        for ($i = 1; $i <= 10; $i++) {
+          $tasks = [
+                      [
+                          'task' => 'name'.$i,
+                          'user' => 'user'.$i,
+                      ]
+          ];
+          DB::table('tasks')->insert($tasks);
+      }
     }
 }
