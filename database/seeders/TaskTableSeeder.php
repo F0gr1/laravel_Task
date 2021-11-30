@@ -19,8 +19,8 @@ class TaskTableSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
           $tasks = [
                       [
-                          'task' => $i,
-                          'user' => $i,
+                          'task' => 'name'.$i,
+                          'user' => 'user'.$i,
                       ]
           ];
           DB::table('tasks')->insert($tasks);
