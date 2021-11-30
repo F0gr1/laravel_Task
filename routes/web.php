@@ -17,7 +17,6 @@ Route::redirect('/' , 'login');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\TaskController::class, 'index'])->name('home')->middleware('verified');;
-//Route::get('/home/{task}', [App\Http\Controllers\TaskController::class, 'show']);
 Route::get('/home/create', [App\Http\Controllers\TaskController::class, 'create']);
 Route::post('/home',[App\Http\Controllers\TaskController::class, 'store']);
 Route::get('/home/{task}/edit' , [App\Http\Controllers\TaskController::class , 'edit']);
@@ -30,15 +29,9 @@ Route::post('/home/task/{task}',[App\Http\Controllers\ProjectController::class, 
 Route::get('/home/task/{project}/edit' , [App\Http\Controllers\ProjectController::class , 'edit']);
 Route::put('/home/task/{project}' ,[App\Http\Controllers\ProjectController::class , 'update']);
 Route::Delete('home/task/project/{project}' , [App\Http\Controllers\ProjectController::class , 'delete']);
-
 Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
-
-// Route::get('/users/add' , [App\Http\Controllers\UseraddController::class,'add'])->name('user');
-
+Route::get('user/add',[App\Http\Controllers\ShowTaskController::class, 'add']);
 Route::post('register/pre_check', [App\Http\Controllers\Auth\RegisterController::class,'pre_check'])->name('register.pre_check');
-// Route::post('register/pre_check/check_register',[App\Http\Controllers\Auth\RegisterController::class,'registered'])->name('registered');
-// Route::get('register/pre_check/check_register',[App\Http\Controllers\Auth\RegisterController::class,'registered'])->name('registered');
 Route::get('register/verify/{token}', [App\Http\Controllers\Auth\RegisterController::class,'showForm']);
-//Route::post('register/main_check',[App\Http\Controllers\Auth\RegisterController::class,'mainCheck'])->name('register.main.check');
 Route::post('register/main_register',[App\Http\Controllers\Auth\RegisterController::class,'mainRegister'])->name('register.main.registered');
 Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
