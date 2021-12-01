@@ -16,7 +16,7 @@
                     <div class="form-group flex">
                     <select name="userId"   class='form-control' value='userId'>
                         @foreach($users as $user)
-                            <option value="$user -> id"　name="user">{{ $user->name}}</option>
+                            <option value="{{$user->id}}"　name="user">{{ $user->name}}</option>
                         @endforeach
                     </select>
                     <select name="job_id[]"  class='form-control' value='taskid'>
