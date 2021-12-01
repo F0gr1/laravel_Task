@@ -44,7 +44,7 @@ class TaskController extends Controller
     }
     public function create()
     {
-        // 空の$bookを渡す
+        // 空の$taskを渡す
         $task = new Task();
         $userName = Auth::user();
         return view('Task/create', compact('task' , 'userName'));

@@ -1,6 +1,6 @@
-<link href="{{ asset('css/main.css') }}" rel="stylesheet">
-
+@extends('layouts.app')
 <div class="container ops-main">
+@section('content')
     <div class="row">
         <div class="col-md-6">
             <h2>プロジェクト詳細</h2>
@@ -24,3 +24,4 @@
         </div>
     </div>
 </div>
+@endsection
