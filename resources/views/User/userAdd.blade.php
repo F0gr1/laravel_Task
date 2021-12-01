@@ -19,6 +19,7 @@
                             <option value="{{$user->id}}"　name="user">{{ $user->name}}</option>
                         @endforeach
                     </select>
+                    
                     <select name="taskId"  class='form-control' value='{{$showTask-> taskId}}'>
                         @foreach($tasks as $task )
                             <option value="{{$task->id }}" name="task">{{ $task->task }}</option>
