@@ -31,10 +31,28 @@ class GroupController extends Controller
 
     public function create($id)
     {
-         // 空の$bookと自分のuserNameを渡す
+        // 空の$bookと自分のuserNameを渡す
         $group = new Group();
         $userName = Auth::user();
         return view('Group/create', compact('group' , 'userName'));
+    }
+
+    public function update(Request $request , $id){
+        return redirect("/home");
+    }
+
+    public function store(Request $request){
+        return redirect("/home");
+    }
+
+    public function delete($id)
+    {
+        try{
+            Group::findOrFail($id)->delete();
+        }catch(ModelNotFoundException $e){
+            App::abort(404);
+        }
+        return redirect("/home");
     }
 
 }
