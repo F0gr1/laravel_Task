@@ -38,11 +38,17 @@ class GroupController extends Controller
     }
 
     public function update(Request $request , $id){
-        return redirect("/home");
+        $group = Group::findOrFail($id);
+        $group->group_name = $request->group_name;
+        $group->save();
+        return redirect("Group/index");
     }
 
     public function store(Request $request){
-        return redirect("/home");
+        $group = new Group();
+        $group->group_name = $request->group_name;
+        $group->save();
+        return redirect("Group/index");
     }
 
     public function delete($id)
