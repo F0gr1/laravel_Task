@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-class ShowTaskSeeder extends Seeder
+class showTaskTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -20,12 +20,12 @@ class ShowTaskSeeder extends Seeder
             $STasks = [
                         [
                             'userId' => '1',
-                            'taskId' => $i
+                            'taskId' => $i,
                         ]
             ];
             DB::table('show_tasks')->insert($STasks);
         }
-    
+
         // 登録
 
     }
