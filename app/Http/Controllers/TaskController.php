@@ -36,7 +36,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->task = $request->task;
-        $task->User = $request->User;
+        $task->user = $request->user;
         $task->save();
 
         return redirect("/home");
@@ -53,7 +53,7 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task->task = $request->task;
-        $task->User = $request->User;
+        $task->user = $request->user;
         $task->save();
         
         $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
