@@ -55,10 +55,3 @@
     </div>
 </div>
 @endsection
-
-<script>
-    document.getElementById("jump-detail").onclick = function() {
-        window.location.href = 'home/task/{{$Project->id}}/detail';
-        alert("aaa");
-}
-    </script>
