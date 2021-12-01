@@ -10,20 +10,17 @@ use Illuminate\Support\Facades\Auth;
 class ShowTaskController extends Controller
 {
     public function add(){
-        $showTasks = new ShowTask();
+        $showTask = new ShowTask();
         $tasks = DB::table('tasks')->get();
         $users = DB::table('users')->get();
-        return view('User/userAdd', compact('showTasks','tasks' , 'users'));
+        return view('User/userAdd', compact('tasks' , 'users' , 'showTask'));
     }
     public function store(Request $request)
     {
         $showTask = new ShowTask();
         $task = new Task();
-        $task->id = $request->id;
-        $taskid =   $task -> id ;
-        $userid = 2;
-        $showTask-> taskId = $taskid;
-        $showTask-> userId = $userid;
+        $showTask-> taskId = $request->taskId;
+        $showTask-> userId = $request->userId;
         $showTask -> save();
 
         return redirect("/home");
