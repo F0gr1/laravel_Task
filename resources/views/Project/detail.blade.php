@@ -1,3 +1,4 @@
+@extends('layouts.app')
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 
 <div class="container ops-main">
