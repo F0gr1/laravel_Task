@@ -1,6 +1,6 @@
 @extends('layouts.app')
-<div class="container ops-main">
 @section('content')
+<div class="container ops-main">
     <div class="row">
         <div class="col-md-6">
             <h2>プロジェクト詳細</h2>
