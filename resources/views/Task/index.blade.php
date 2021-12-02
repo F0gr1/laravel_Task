@@ -5,8 +5,12 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">タスク</div>
-
+                <div class="card-header">
+                    <tr>
+                        <th>タスク</th>
+                        <th><a  href="/home/group">グループ</a></th>
+                    <tr>
+                </div>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
@@ -43,7 +47,10 @@
                                 </tr>
                                 @endforeach
                             </table>
-                            <div><a href="/home/create" class="btn btn-outline-success">新規作成</a></div>
+                            <div>
+                                <a href="/home/create" class="btn btn-outline-success">新規作成</a>
+                        </div>
+                        
                     </div>
                 </div>
             </div>
