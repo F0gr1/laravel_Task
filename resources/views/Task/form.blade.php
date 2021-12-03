@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <label for='name'>作成者</label>
                             <label class="form-control" name="User" > {{ $userName->name }}</label>
-                            <input type='hidden' class="form-control" name="User" value="{{ $userName->name }}"/> 
+                            <input type='hidden' class="form-control" name="user" value="{{ $userName->name }}"/> 
                         </div>
                         <button type="submit" class="btn btn-default">登録</button>
                         <a href="/home">戻る</a>
