@@ -19,7 +19,6 @@ class TaskController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        // $tasks = Task::orderBy('id', 'asc')->sortable()->paginate(50);
         $tasks = DB::table('tasks')
         ->join('show_tasks as S','S.taskId','=','tasks.id')
         ->where('S.userId' , '=' , $userId)
@@ -37,14 +36,14 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $task->task = $request->task;
-        $task->User = $request->User;
+        $task->user = $request->user;
         $task->save();
 
         return redirect("/home");
     }
     public function create()
     {
-        // 空の$bookを渡す
+        // 空の$taskを渡す
         $task = new Task();
         $userName = Auth::user();
         return view('Task/create', compact('task' , 'userName'));
@@ -54,7 +53,7 @@ class TaskController extends Controller
     {
         $task = new Task();
         $task->task = $request->task;
-        $task->User = $request->User;
+        $task->user = $request->user;
         $task->save();
         
         $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
