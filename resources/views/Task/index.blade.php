@@ -18,7 +18,6 @@
                         </div>
                     @endif
                 </div>
-
                 <div class="card-body">
                     <div class="row">
                             <table class="table text-center">
@@ -47,10 +46,9 @@
                                 </tr>
                                 @endforeach
                             </table>
-                            <div>
-                                <a href="/home/create" class="btn btn-outline-success">新規作成</a>
+                        <div>
+                            <a href="/home/create" class="btn btn-outline-success">新規作成</a>
                         </div>
-                        
                     </div>
                 </div>
             </div>
