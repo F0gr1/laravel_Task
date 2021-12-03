@@ -30,9 +30,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
         　
-               <!-- <div class="card-header">{{ __('Login') }} </div> -->
-               <div class="card">
-               　   <i class="fas fa-user fa-9x " style="color:lightgreen;"></i>
+            <!-- <div class="card-header">{{ __('Login') }} </div> -->
+            <div class="card">
+            　   <i class="fas fa-user fa-9x " style="color:lightgreen;"></i>
                     <div clss="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
