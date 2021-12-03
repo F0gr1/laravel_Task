@@ -33,7 +33,7 @@
                                     <td>
                                         <a href="/home/task/{{$task ->id}}">{{ $task->task }}</a>
                                     </td>
-                                    <td>{{ $task->User }}</td>
+                                    <td>{{ $task->user }}</td>
                                     <td>
                                         <a href="/home/{{ $task->id }}/edit">編集</a>
                                     </td>
