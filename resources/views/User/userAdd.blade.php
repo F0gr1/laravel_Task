@@ -13,19 +13,21 @@
             <div class="col-md-8 col-md-offset-1">
                 <form action="/user/add/" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                    <div class="form-group">
-                    <select name="user_id">
-                    @foreach($users as $user)
-                        <option value="{{ $user->id }}">{{ $user->name }}</option>
-                    @endforeach
-
-                    <select name="job_id">
-                    @foreach($tasks as $task)
-                        <option value="{{ $task->id }}">{{ $task->task }}</option>
-                    @endforeach
+                    <div class="form-group flex">
+                    <select name="userId"   class='form-control' value='{{$showTask -> userId}}'>
+                        @foreach($users as $user)
+                            <option value="{{$user->id}}"　name="user">{{ $user->name}}</option>
+                        @endforeach
+                    </select>
                     
-                    <button type="submit" class="btn btn-default">登録</button>
-                    <a href="/home/">戻る</a>
+                    <select name="taskId"  class='form-control' value='{{$showTask-> taskId}}'>
+                        @foreach($tasks as $task )
+                            <option value="{{$task->id }}" name="task">{{ $task->task }}</option>
+                        @endforeach 
+                    </select>
+                        <button type="submit" class="btn btn-default">登録</button>
+                        <a href="/home/">戻る</a>
+                    </div>
                 </form>
             </div>
         </div>    
