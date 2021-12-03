@@ -15,8 +15,7 @@ class GroupController extends Controller
     {
         // 自分のuserIdとgroup_leader_idが一致するレコードを渡す
         $userId = Auth::id();
-        $groups = Group::table('groups')
-        ->where('group_leader_id' , '=' , $userId)
+        $groups = Group::where('group_leader_id' , '=' , $userId)
         ->get();
         return view('Group/index', compact('groups'));
     }
