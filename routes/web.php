@@ -35,7 +35,7 @@ Route::get('home/task/{taskId}/detail' , [App\Http\Controllers\ProjectController
 Route::post('register/pre_check', [App\Http\Controllers\Auth\RegisterController::class,'pre_check'])->name('register.pre_check');
 Route::get('register/verify/{token}', [App\Http\Controllers\Auth\RegisterController::class,'showForm']);
 Route::post('register/main_register',[App\Http\Controllers\Auth\RegisterController::class,'mainRegister'])->name('register.main.registered');
-
-
+Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
+Route::get('home/group',[App\Http\Controllers\GroupController::class,'index'])
 Route::get('user/addPage',[App\Http\Controllers\ShowTaskController::class, 'add']);
 Route::post('user/add',[App\Http\Controllers\ShowTaskController::class, 'store']);
