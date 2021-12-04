@@ -16,7 +16,9 @@ class GroupController extends Controller
         // 自分のuserIdとgroup_leader_idが一致するレコードを渡す
         $userId = Auth::id();
         $groups = Group::where('group_leader_id' , '=' , $userId)
+        ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
         ->get();
+        // dd($groups);
         return view('Group/index', compact('groups'));
     }
 
@@ -24,9 +26,8 @@ class GroupController extends Controller
     {
         // 選択したグループのレコードとそのグループに所属するuserのレコードを渡す
         $group = Group::findOrFail($groupId);
-        $user = User::table('users')
-        ->where('group_id' , '=' , $groupId)
-        ->get();
+        $userId = GroupUser::where('group_id' , '=' , $groupId)->get();
+        $user = User::where('id' , '=' , $userId)->get();
         return view('Group/edit', compact('group' , 'user'));
     }
 
