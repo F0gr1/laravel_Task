@@ -11,7 +11,7 @@ class Task extends Model
     use HasFactory;
     // use Notifiable;
     use Sortable;   // 追加
-    public $sortable = ['id' , 'task' , 'User'];    // ソート対象カラム追加
+    public $sortable = ['id' , 'task' , 'user'];    // ソート対象カラム追加
 
     //hasMany設定
     public function Show_task()
