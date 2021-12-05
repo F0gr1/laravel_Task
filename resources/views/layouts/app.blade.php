@@ -36,7 +36,7 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         <li class="nav-item">
-                            <a class="nav-link" href="/user/add">ユーザーを追加</a>
+                            <a class="nav-link" href="/user/addPage">ユーザーを追加</a>
                         </li>
                         @if (Route::is('home'))
                             <li class="nav-item">
