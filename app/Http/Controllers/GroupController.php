@@ -18,7 +18,6 @@ class GroupController extends Controller
         $groups = Group::where('group_leader_id' , '=' , $userId)
         ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
         ->get();
-        // dd($groups);
         return view('Group/index', compact('groups'));
     }
 
@@ -27,7 +26,7 @@ class GroupController extends Controller
         // 選択したグループのレコードとそのグループに所属するuserのレコードを渡す
         $group = Group::findOrFail($groupId);
         $userId = GroupUser::where('group_id' , '=' , $groupId)->get();
-        $user = User::where('id' , '=' , $userId)->get();
+        $user = User::find($userId);
         return view('Group/edit', compact('group' , 'user'));
     }
 
