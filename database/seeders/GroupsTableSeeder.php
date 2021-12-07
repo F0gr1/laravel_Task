@@ -16,13 +16,13 @@ class GroupsTableSeeder extends Seeder
     {
         // 初期データ用意（列名をキーとする連想配列）
         for ($i = 1; $i <= 10; $i++) {
-          $groups = [
-                      [
-                          'group_name' => 'group_name'.$i,
-                          'group_leader_id' => $i,
-                      ]
-          ];
-          DB::table('groups')->insert($groups);
+        $groups = [
+                    [
+                        'group_name' => 'group_name'.$i,
+                        'group_leader_id' => $i,
+                    ]
+        ];
+        DB::table('groups')->insert($groups);
         }
     }
 }
