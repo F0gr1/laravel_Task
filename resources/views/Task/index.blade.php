@@ -8,7 +8,6 @@
                 <div class="card-header">
                     <tr>
                         <th>タスク</th>
-                        <th><a  href="/home/group">グループ</a></th>
                     <tr>
                 </div>
                 <div class="card-body">

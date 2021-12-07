@@ -17,14 +17,14 @@ class UsersGroupsTableSeeder extends Seeder
         DB::table('users_groups')->truncate();
 
         // 初期データ用意（列名をキーとする連想配列）
-        for ($i = 1; $i <= 10; $i++) {
-          $usersGroups = [
-                      [
-                          'user_id' => $i,
-                          'group_id' => $i,
-                      ]
-          ];
-          DB::table('users_groups')->insert($usersGroups);
+    for ($i = 1; $i <= 10; $i++) {
+        $usersGroups = [
+                    [
+                        'user_id' => $i,
+                        'group_id' => $i,
+                    ]
+        ];
+        DB::table('users_groups')->insert($usersGroups);
         }
     }
 }
