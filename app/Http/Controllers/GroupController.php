@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 
 class GroupController extends Controller
@@ -18,6 +19,7 @@ class GroupController extends Controller
         $groups = Group::where('group_leader_id' , '=' , $userId)
         ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
         ->get();
+        
         return view('Group/index', compact('groups'));
     }
 
@@ -56,10 +58,11 @@ class GroupController extends Controller
     {
         try{
             Group::findOrFail($id)->delete();
+            
         }catch(ModelNotFoundException $e){
+            logger('test', ['$e']);
             App::abort(404);
         }
-        return redirect("/home");
+        return redirect("/home/group");
     }
-
 }
