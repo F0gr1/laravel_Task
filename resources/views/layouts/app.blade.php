@@ -28,24 +28,13 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class=" navbar-collapse"  id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto text-right">
                         <!-- Authentication Links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user/addPage">ユーザーを追加</a>
-                        </li>
-                        @if (Route::is('home'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="/home/group">グループ一覧</a>
-                            </li>
-                        @endif
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home">タスク一覧</a>
-                        </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -58,7 +47,30 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown px-4">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    一覧
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @if (!Route::is('home'))
+                                    <a class="nav-link" href="/home">タスク一覧</a>
+                                @endif
+                                @if (!Route::is('home/group'))
+                                    <a class="nav-link" href="/home/group">グループ一覧</a>
+                                @endif
+                                </div>
+                            </li>    
+                            <li class="nav-item dropdown px-4">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    ユーザーを追加
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/user/addPage">
+                                        Myタスクのユーザーの追加
+                                    </a>
+                                </div>
+                            </li>    
+                            <li class="nav-item dropdown ">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
