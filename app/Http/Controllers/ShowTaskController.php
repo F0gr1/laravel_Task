@@ -22,7 +22,7 @@ class ShowTaskController extends Controller
         $task = new Task();
         $showTask-> taskId = $request->taskId;
         $showTask-> userId = $request->userId;
-        $showTask -> save();
+        $showTask-> save();
 
         return redirect("/home");
     }
