@@ -16,10 +16,10 @@ class GroupController extends Controller
     public function index()
     {
         $userId = Auth::id();
-        $group = Group::where('group_leader_id' , '=' , $userId)
+        $groups = Group::where('group_leader_id' , '=' , $userId)
         ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
         ->get();
-        return view('Group/index', compact('group'));
+        return view('Group/index', compact('groups'));
     }
 
     public function edit($groupId)
