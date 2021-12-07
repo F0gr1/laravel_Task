@@ -59,9 +59,9 @@ class TaskController extends Controller
         $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
         $showTask = new ShowTask();
         $id = Auth::id();
-        $showTask-> taskId = $taskId->id;
-        $showTask->userId =$id;
-        $showTask -> save();
+        $showTask->taskId = $taskId->id;
+        $showTask->userId = $id;
+        $showTask->save();
 
         return redirect("/home");
     }
