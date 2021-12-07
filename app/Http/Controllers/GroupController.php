@@ -9,6 +9,7 @@ use App\Models\Task;
 use App\Models\UserGroup;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 
 
 class GroupController extends Controller
@@ -70,10 +71,11 @@ class GroupController extends Controller
     {
         try{
             Group::findOrFail($id)->delete();
+            
         }catch(ModelNotFoundException $e){
+            logger('test', ['$e']);
             App::abort(404);
         }
-        return redirect("/home");
+        return redirect("/home/group");
     }
-
 }
