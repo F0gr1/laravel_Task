@@ -18,7 +18,7 @@ class ProjectTableSeeder extends Seeder
                         [
                             'taskId'=>'1',
                             'project'=>'テスト',
-                            'User'=>'サトシ',
+                            'staff'=>'サトシ',
                             'memo'=>'テスト用のデータ',
                             'progress' => '0',
                             'start_date'=>'2021-10-15',
@@ -27,7 +27,7 @@ class ProjectTableSeeder extends Seeder
                         [
                             'taskId'=>'2',
                             'project'=>'テスト2',
-                            'User'=>'サトシ',
+                            'staff'=>'サトシ',
                             'memo'=>'テスト用のデータ',
                             'progress' => '100',
                             'start_date'=>'2021-10-15',
