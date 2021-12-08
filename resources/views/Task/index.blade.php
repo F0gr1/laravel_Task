@@ -21,7 +21,7 @@
                             <tr>
                                 <th class="text-center">プロジェクト</th>
                                 <th class="text-center">ユーザー</th>
-                                <th class="text-center">Edit</th>
+                                <th class="text-center">編集</th>
                                 <th class="text-center">削除</th>
                             </tr>
                             @foreach($tasks as $task)
