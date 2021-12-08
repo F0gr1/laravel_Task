@@ -44,10 +44,10 @@
                             @endforeach
                         </table>
                     </div>
-                </div>
-                <div class="text-right">
+                    <div class= "col-md-11  text-right">
                     <a href="/home/create" class="btn btn-outline-success">新規作成</a>
                 </div> 
+                </div>
             </div>
         </div>
     </div>
