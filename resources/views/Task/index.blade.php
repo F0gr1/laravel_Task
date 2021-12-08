@@ -26,6 +26,7 @@
                                     <th class="text-center">ユーザー</th>
                                     <th class="text-center">Edit</th>
                                     <th class="text-center">削除</th>
+                                    
                                 </tr>
                                 @foreach($tasks as $task)
                                 <tr>
@@ -49,9 +50,9 @@
                             <div>
                                 <a href="/home/create" class="btn btn-outline-success">新規作成</a>
                         </div>
-                        
                     </div>
                 </div>
+                <div class="d-flex justify-content-center">{{ $tasks->links() }}</div>
             </div>
         </div>
     </div>
