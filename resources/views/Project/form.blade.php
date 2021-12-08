@@ -29,17 +29,23 @@
                             <input type="hidden" class="form-control" name="taskId" value="{{ $Project->taskId}}">
                         </div>
                     @endif
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="User">ユーザー</label>
                         <input type="text" class="form-control" name="User" value="{{ $Project->User }}">
-                    </div>
+                    </div> -->
+                    <label for="staff">担当者</label>
+                    <select name="staff"   class='form-control' value="{{$Project -> satff}}">
+                        @foreach($users as $user)
+                            <option name="staff">{{$user->name}}</option>
+                        @endforeach
+                    </select>
                     <div class="form-group">
                         <label for="memo">内容</label>
                         <input type="text" class="form-control" name="memo" value="{{ $Project->memo }}">
                     </div>
                     <div class="form-group">
                         <label for="progress">進捗具合</label>
-                        <input type="text" class="form-control" name="progress" value="{{ $Project->progress }}"> 
+                        <input type="number" class="form-control" name="progress" value="{{ $Project->progress }}"> 
                     </div>
                     <div class="form-group">
                     <label for="start_date">開始日</label>
@@ -49,7 +55,7 @@
                         <label for="end_date">終了日</label>
                         <input type="date" class="form-control" name="end_date" value="{{ $Project->end_date }}">
                     </div>
-                    <button type="submit" class="btn btn-default">登録</button>
+                    <button type="submit" class="btn btn-outline-success">登録</button>
                     <a href="/home/">戻る</a>
                 </form>
             </div>
