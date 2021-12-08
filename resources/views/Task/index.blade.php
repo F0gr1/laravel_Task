@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">
                     <tr>
-                        <th>タスク</th>
+                        <th>プロジェクト</th>
                     <tr>
                 </div>
                 <div class="card-body">
@@ -22,7 +22,7 @@
                     <div class="row">
                             <table class="table text-center">
                                 <tr>
-                                    <th class="text-center">タスク</th>
+                                    <th class="text-center">プロジェクト</th>
                                     <th class="text-center">ユーザー</th>
                                     <th class="text-center">Edit</th>
                                     <th class="text-center">削除</th>
