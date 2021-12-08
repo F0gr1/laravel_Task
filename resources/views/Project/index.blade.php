@@ -21,7 +21,7 @@
                             <table class="table text-center">
                                 <tr>
                                     <th class="text-center">タスク</th>
-                                    <th class="text-center">ユーザー</th>
+                                    <th class="text-center">担当者</th>
                                     <th class="text-center">進捗</th>
                                     <th class="text-center">期間</th>
                                     <th class="text-center">編集</th>
@@ -30,7 +30,7 @@
                                 @foreach($Projects as $Project)
                                 <tr>
                                         <td><a href="/home/task/{{ $Project->id }}/detail">{{ $Project->project }}</a></td>
-                                        <td>{{ $Project->User }}</td>
+                                        <td>{{ $Project->staff }}</td>
                                         <td>{{$Project->progress}}</td>
                                         <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                         <td>
