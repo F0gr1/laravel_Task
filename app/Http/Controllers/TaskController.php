@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ShowTask;
 use Illuminate\Support\Facades\App; 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\Paginator;
 class TaskController extends Controller
 {
     public function __construct()
@@ -22,7 +23,7 @@ class TaskController extends Controller
         $tasks = DB::table('tasks')
         ->join('show_tasks as S','S.taskId','=','tasks.id')
         ->where('S.userId' , '=' , $userId)
-        ->get();
+        ->paginate(5);
         return view('Task/index', compact('tasks'));
     }
     public function edit($id)
