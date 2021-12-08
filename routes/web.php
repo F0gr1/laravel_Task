@@ -39,5 +39,5 @@ Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectControlle
 
 Route::get('home/group',[App\Http\Controllers\GroupController::class,'index']);
 Route::Delete('home/group/{id}',[App\Http\Controllers\GroupController::class,'delete']);
-Route::get('user/addPage',[App\Http\Controllers\ShowTaskController::class, 'add']);
-Route::post('user/add',[App\Http\Controllers\ShowTaskController::class, 'store']);
+Route::get('user/addPage',[App\Http\Controllers\TaskViewerController::class, 'add']);
+Route::post('user/add',[App\Http\Controllers\TaskViewerController::class, 'store']);
