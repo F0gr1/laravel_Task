@@ -33,10 +33,10 @@
                         <label for="User">ユーザー</label>
                         <input type="text" class="form-control" name="User" value="{{ $Project->User }}">
                     </div> -->
-                    <label for="staff">担当者</label>
-                    <select name="staff"   class='form-control' value="{{$Project -> satff}}">
+                    <label for="PIC">担当者</label>
+                    <select name="PIC"   class='form-control' value="{{$Project -> PIC}}">
                         @foreach($users as $user)
-                            <option name="staff">{{$user->name}}</option>
+                            <option name="PIC">{{$user->name}}</option>
                         @endforeach
                     </select>
                     <div class="form-group">
