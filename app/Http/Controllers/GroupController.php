@@ -36,7 +36,7 @@ class GroupController extends Controller
         $group = new Group();
         $user = Auth::user();
         $group->group_leader_id = $user->id;
-        return view('Group/create', compact('group' , 'userName'));
+        return view('Group/create', compact('group'));
     }
 
     public function update(Request $request , $id){
