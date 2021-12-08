@@ -38,6 +38,8 @@ Route::post('register/main_register',[App\Http\Controllers\Auth\RegisterControll
 Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
 
 Route::get('home/group',[App\Http\Controllers\GroupController::class,'index']);
+Route::get('home/group/create',[App\Http\Controllers\GroupController::class,'create']);
+Route::post('home/group',[App\Http\Controllers\GroupController::class,'store']);
 Route::Delete('home/group/{id}',[App\Http\Controllers\GroupController::class,'delete']);
 Route::get('user/addPage',[App\Http\Controllers\ShowTaskController::class, 'add']);
 Route::post('user/add',[App\Http\Controllers\ShowTaskController::class, 'store']);
