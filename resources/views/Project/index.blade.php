@@ -30,7 +30,7 @@
                                 @foreach($Projects as $Project)
                                 <tr>
                                         <td><a href="/home/task/{{ $Project->id }}/detail">{{ $Project->project }}</a></td>
-                                        <td>{{ $Project->staff }}</td>
+                                        <td>{{ $Project->PIC }}</td>
                                         <td>{{$Project->progress}}</td>
                                         <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                         <td>

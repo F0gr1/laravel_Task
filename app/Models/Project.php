@@ -12,7 +12,7 @@ class Project extends Model
         'id',
         'taskId',
         'project',
-        'staff',
+        'PIC',
         'progress',
         'memo',
         'start_date',
