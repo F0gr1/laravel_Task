@@ -3,7 +3,7 @@
 <div class="container ops-main">
     <div class="row">
         <div class="col-md-6">
-            <h2>プロジェクト登録</h2>
+            <h2>タスク登録</h2>
         </div>
     </div>
     <div class="card-body">
@@ -17,7 +17,7 @@
                 @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
-                        <label for="name">プロジェクト名</label>
+                        <label for="name">タスク名</label>
                         <input type="text" class="form-control" name="project" value="{{ $Project->project }}">
                     </div>
                     @if($target == 'store')
