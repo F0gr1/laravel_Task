@@ -17,7 +17,8 @@ class CreateProjectTable extends Migration
             $table->increments('id');
             $table->string('taskId', 50);
             $table->string('project' , 50);
-            $table->string('User' , 50);
+            $table->string('staff' , 50);
+            $table->integer('progress');
             $table->string('memo');
             $table->date('start_date');
             $table->date('end_date');
