@@ -10,6 +10,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -59,7 +60,7 @@
                                     <a class="nav-link" href="/home/group">グループ一覧</a>
                                 @endif
                                 </div>
-                            </li>    
+                            </li>
                             <li class="nav-item dropdown px-4">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-success" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     ユーザーを追加
@@ -69,7 +70,7 @@
                                         Myタスクのユーザーの追加
                                     </a>
                                 </div>
-                            </li>    
+                            </li>
                             <li class="nav-item dropdown ">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-success" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -95,5 +96,15 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        let alertAndDelete = (target, type)=>{
+            let res = confirm("Delete this " + type +" ?");
+            if (res){
+                axios.delete(target);
+
+            }
+        }
+    </script>
 </body>
 </html>
