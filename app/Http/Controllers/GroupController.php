@@ -19,9 +19,13 @@ class GroupController extends Controller
     {
         $userId = Auth::id();
         $groups = Group::where('group_leader_id' , '=' , $userId)
-        ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
         ->get();
-        return view('Group/index', compact('groups'));
+        $groupMembers = [];
+        foreach($groups as $group){
+            $groupId = $group->id;
+            $groupMembers[$groupId] = UsersGroup::where('group_id', '=', $groupId)->count();
+        }
+        return view('Group/index', compact('groups','groupMembers'));
     }
 
     public function edit($groupId)
