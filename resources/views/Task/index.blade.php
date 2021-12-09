@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -37,7 +36,7 @@
                         </table>
                     </div>
                     <div class= "col-md-11  text-right">
-                    <a href="/home/create" class="btn btn-outline-dark">新規作成</a>
+                    <a href="/home/create" class="btn btn-outline-secondary">新規作成</a>
                 </div> 
                 </div>
             </div>
