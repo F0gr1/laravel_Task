@@ -1,5 +1,4 @@
 @extends('layouts.app')
-<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -46,7 +45,7 @@
                                 </tr>
                                 @endforeach
                             </table>
-                            <div><a href="/home/task/project/create/{{$Task -> id}}" class="btn btn-default">新規作成</a></div>
+                            <div><a href="/home/task/project/create/{{$Task -> id}}" class="btn btn-default-dark">新規作成</a></div>
                         </div>
                     </div>
                 </div>
