@@ -26,7 +26,6 @@
                                     <th class="text-center">ユーザー</th>
                                     <th class="text-center">Edit</th>
                                     <th class="text-center">削除</th>
-                                    
                                 </tr>
                                 @foreach($tasks as $task)
                                 <tr>
