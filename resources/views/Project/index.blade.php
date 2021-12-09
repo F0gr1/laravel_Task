@@ -40,7 +40,11 @@
                                         <button type="button"
                                                 class="btn btn-xs btn-danger"
                                                 aria-label="Left Align"
-                                                onclick="alertAndDelete('/home/task/project/{{ $Project->id }}', 'project')">
+                                                onclick="alertAndDelete(
+                                                    '/home/task/project/{{ $Project->id }}',
+                                                    'project',
+                                                    '{{csrf_token()}}')"
+                                        >
                                             <span class="glyphicon glyphicon-trash"></span>
                                         </button>
                                     </td>
