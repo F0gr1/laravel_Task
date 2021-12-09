@@ -97,12 +97,17 @@
     </div>
 
     <script>
-        let alertAndDelete = (target, type)=>{
+        let alertAndDelete = (target, type, token)=>{
+            console.log(target, type);
             let res = confirm("Delete this " + type +" ?");
             if (res){
-                let req = new XMLHttpRequest();
-                req.open('DELETE', target);
-                req.send();
+                let header = new Headers();
+                header.append("X-CSRF-TOKEN", token);
+                console.log(header.get("X-CSRF-TOKEN"))
+                fetch(target, {
+                    method: 'DELETE',
+                    headers: header
+                });
             }
         }
     </script>
