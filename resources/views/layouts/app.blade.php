@@ -102,7 +102,6 @@
             let res = confirm("Delete this " + type +" ?");
             if (res){
                 axios.delete(target);
-
             }
         }
     </script>
