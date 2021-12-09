@@ -18,7 +18,7 @@ class GroupController extends Controller
         $userId = Auth::id();
         $groups = Group::where('group_leader_id' , '=' , $userId)
         ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
-        ->paginate(5);
+        ->paginate(7);
         return view('Group/index', compact('groups'));
     }
 

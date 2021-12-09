@@ -23,7 +23,7 @@ class TaskController extends Controller
         $tasks = DB::table('tasks')
         ->join('show_tasks as S','S.taskId','=','tasks.id')
         ->where('S.userId' , '=' , $userId)
-        ->paginate(5);
+        ->paginate(7);
         return view('Task/index', compact('tasks'));
     }
     public function edit($id)
@@ -32,9 +32,9 @@ class TaskController extends Controller
         $userName = Auth::user();
         // 取得した値をビュー「book/edit」に渡す
         return view('Task/edit', compact('task' , 'userName'));
+
     }
-    public function update(Request $request , $id)
-    {
+    public function update(Request $request , $id){
         $task = Task::findOrFail($id);
         $task->task = $request->task;
         $task->user = $request->user;
