@@ -37,7 +37,11 @@
                                     <button type="button"
                                             class="btn btn-xs btn-danger"
                                             aria-label="Left Align"
-                                            onclick="alertAndDelete('/home/{{ $task->id }}', 'task')">
+                                            onclick="alertAndDelete(
+                                                '/home/{{ $task->id }}',
+                                                'task',
+                                                '{{csrf_token()}}')"
+                                    >
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </td>

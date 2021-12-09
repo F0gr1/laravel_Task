@@ -31,7 +31,11 @@
                                     <button type="button"
                                             class="btn btn-xs btn-danger"
                                             aria-label="Left Align"
-                                            onclick="alertAndDelete('/group/{{$group->id}}', 'group')">
+                                            onclick="alertAndDelete(
+                                                '/group/{{$group->id}}',
+                                                'group',
+                                                '{{csrf_token()}}')"
+                                    >
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </button>
                                 </td>
