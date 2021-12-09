@@ -34,11 +34,12 @@
                                     <a href="/home/{{ $task->id }}/edit">編集</a>
                                 </td>
                                 <td>
-                                <form action="/home/{{ $task->id }}" method="post">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-xs btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash"></span></button>
-                                </form>
+                                    <button type="button"
+                                            class="btn btn-xs btn-danger"
+                                            aria-label="Left Align"
+                                            onclick="alertAndDelete('/home/{{ $task->id }}', 'task')">
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -46,7 +47,7 @@
                     </div>
                     <div class= "col-md-11  text-right">
                     <a href="/home/create" class="btn btn-outline-success">新規作成</a>
-                </div> 
+                </div>
                 </div>
             </div>
         </div>

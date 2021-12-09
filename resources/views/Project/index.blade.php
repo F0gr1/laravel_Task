@@ -36,12 +36,13 @@
                                         <td>
                                         <a href="/home/task/{{ $Project->id }}/edit">編集</a>
                                     </td>
-                                    <td>    
-                                    <form action="/home/task/project/{{ $Project->id }}" method="post">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </form>
+                                    <td>
+                                        <button type="button"
+                                                class="btn btn-xs btn-danger"
+                                                aria-label="Left Align"
+                                                onclick="alertAndDelete('/home/task/project/{{ $Project->id }}', 'project')">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
                                     </td>
                                 </tr>
                                 @endforeach
