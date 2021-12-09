@@ -10,7 +10,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -101,7 +100,9 @@
         let alertAndDelete = (target, type)=>{
             let res = confirm("Delete this " + type +" ?");
             if (res){
-                axios.delete(target);
+                let req = new XMLHttpRequest();
+                req.open('DELETE', target);
+                req.send();
             }
         }
     </script>
