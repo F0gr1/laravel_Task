@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\TaskViewer;
 use Illuminate\Support\Facades\App; 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\Paginator;
 class TaskController extends Controller
 {
     public function __construct()
@@ -20,9 +21,9 @@ class TaskController extends Controller
     {
         $userId = Auth::id();
         $tasks = DB::table('tasks')
-        ->join('task_viewers as tv','tv.taskId','=','tasks.id')
-        ->where('tv.userId' , '=' , $userId)
-        ->get();
+        ->join('show_tasks as S','S.taskId','=','tasks.id')
+        ->where('S.userId' , '=' , $userId)
+        ->paginate(7);
         return view('Task/index', compact('tasks'));
     }
     public function edit($id)
@@ -31,9 +32,9 @@ class TaskController extends Controller
         $userName = Auth::user();
         // 取得した値をビュー「task/edit」に渡す
         return view('Task/edit', compact('task' , 'userName'));
+
     }
-    public function update(Request $request , $id)
-    {
+    public function update(Request $request , $id){
         $task = Task::findOrFail($id);
         $task->task = $request->task;
         $task->user = $request->user;

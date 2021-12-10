@@ -41,12 +41,14 @@
                                 </td>
                             </tr>
                             @endforeach
-                            </table>
+                            </table>                       
+
                             <div>
                                 <a href="/home/group/create" class="btn btn-outline-success">新規作成</a></div>
                         </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-center">{{ $groups->links() }}</div>
             </div>
         </div>
     </div>
