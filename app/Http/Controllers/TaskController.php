@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\ShowTask;
+use App\Models\TaskViewer;
 use Illuminate\Support\Facades\App; 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Pagination\Paginator;
 class TaskController extends Controller
 {
     public function __construct()
@@ -22,18 +23,18 @@ class TaskController extends Controller
         $tasks = DB::table('tasks')
         ->join('show_tasks as S','S.taskId','=','tasks.id')
         ->where('S.userId' , '=' , $userId)
-        ->get();
+        ->paginate(7);
         return view('Task/index', compact('tasks'));
     }
     public function edit($id)
     {
         $task = Task::findOrFail($id);
         $userName = Auth::user();
-        // 取得した値をビュー「book/edit」に渡す
+        // 取得した値をビュー「task/edit」に渡す
         return view('Task/edit', compact('task' , 'userName'));
+
     }
-    public function update(Request $request , $id)
-    {
+    public function update(Request $request , $id){
         $task = Task::findOrFail($id);
         $task->task = $request->task;
         $task->user = $request->user;
@@ -57,11 +58,11 @@ class TaskController extends Controller
         $task->save();
         
         $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
-        $showTask = new ShowTask();
+        $viewer = new TaskViewer();
         $id = Auth::id();
-        $showTask->taskId = $taskId->id;
-        $showTask->userId = $id;
-        $showTask->save();
+        $viewer->taskId = $taskId->id;
+        $viewer->userId = $id;
+        $viewer->save();
 
         return redirect("/home");
     }
@@ -69,7 +70,7 @@ class TaskController extends Controller
     {
         try{
             Task::findOrFail($id)->delete();
-            ShowTask::findOrFail($id)->delete();
+            Taskviewer::findOrFail($id)->delete();
         }catch(ModelNotFoundException $e){
             App::abort(404);
         }

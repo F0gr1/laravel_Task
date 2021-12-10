@@ -11,7 +11,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
-
+use Illuminate\Pagination\Paginator;
 
 class GroupController extends Controller
 {
@@ -26,6 +26,7 @@ class GroupController extends Controller
 
         $userId = Auth::id();
         $groups = Group::where('group_leader_id' , '=' , $userId)
+
         ->get();
         $groupMembers = [];
         foreach($groups as $group){
@@ -33,6 +34,10 @@ class GroupController extends Controller
             $groupMembers[$groupId] = UsersGroup::where('group_id', '=', $groupId)->count();
         }
         return view('Group/index', compact('groups', 'groupMembers'));
+        // ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
+        // ->paginate(7);
+        // return view('Group/index', compact('groups'));
+
     }
 
     public function edit($groupId)

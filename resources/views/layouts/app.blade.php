@@ -16,50 +16,63 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <style>.pagination { justify-content: center; }</style> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/index_app.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm " >
+        <nav class="navbar navbar-expand-md navbar-light bg-dark shadow " >
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">atj-tech</a>
+                <b><a class="navbar-brand text-success" href="{{ url('/') }}">atj-tech</a> </b>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class=" navbar-collapse"  id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     </ul>
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto text-right">
                         <!-- Authentication Links -->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user/addPage">ユーザーを追加</a>
-                        </li>
-                        @if (Route::is('home'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="/home/group">グループ一覧</a>
-                            </li>
-                        @endif
-                        <li class="nav-item">
-                            <a class="nav-link" href="/home">タスク一覧</a>
-                        </li>
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item dropdown px-4">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-success" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    一覧
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @if (!Route::is('home'))
+                                    <a class="nav-link" href="/home">タスク一覧</a>
+                                @endif
+                                @if (!Route::is('home/group'))
+                                    <a class="nav-link" href="/home/group">グループ一覧</a>
+                                @endif
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown px-4">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-success" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    ユーザーを追加
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/user/addPage">
+                                        Myタスクのユーザーの追加
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown ">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-success" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -83,5 +96,21 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        let alertAndDelete = (target, type, token)=>{
+            console.log(target, type);
+            let res = confirm("Delete this " + type +" ?");
+            if (res){
+                let header = new Headers();
+                header.append("X-CSRF-TOKEN", token);
+                console.log(header.get("X-CSRF-TOKEN"))
+                fetch(target, {
+                    method: 'DELETE',
+                    headers: header
+                });
+            }
+        }
+    </script>
 </body>
 </html>

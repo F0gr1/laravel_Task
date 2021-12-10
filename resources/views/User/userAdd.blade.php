@@ -14,13 +14,13 @@
                 <form action="/user/add/" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group flex">
-                    <select name="userId"   class='form-control' value='{{$showTask -> userId}}'>
+                    <select name="userId"   class='form-control'>
                         @foreach($users as $user)
                             <option value="{{$user->id}}"　name="user">{{ $user->name}}</option>
                         @endforeach
                     </select>
                     
-                    <select name="taskId"  class='form-control' value='{{$showTask-> taskId}}'>
+                    <select name="taskId"  class='form-control'>
                         @foreach($tasks as $task )
                             <option value="{{$task->id }}" name="task">{{ $task->task }}</option>
                         @endforeach 
