@@ -3,25 +3,27 @@
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 <div class="container ops-main">
     <div class="card">
-        <div class="card-header">グループ名</div>
-        <div class="row">
-            <div class="col-md-8 col-md-offset-1">
+        <div class="card-header bg-dark text-white text-center">グループ名</div>
+        <div class="row  justify-content-center">
+            <div class="col-md-8  p-4">
                 <form action="/home/group/store" method="post">
                     @csrf
-                        <div class="form-group">
-                            <label for="group">グループ名</label>
+                        <div class="form-group d-flex">
+                            <label for="group" class='col-md-3'>グループ名</label>
                             <input type="text" class="form-control" name="group">
                         </div>
-                        <div class="form-group">
-                            <label for='name'>メンバー</label>
+                        <div class="form-group d-flex">
+                            <label for='name' class='col-md-3'>メンバー</label>
                             <select name="userId[]" class='form-control' multiple>
                                 @foreach($users as $user)
                                 <option value="{{ $user->id }}" name="user">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-default">登録</button>
-                        <a href="/home">戻る</a>
+                        <div  class="d-flex"> 
+                            <a href='/home' class='col-md-2 text-dark pt-2  offset-md-11 ' >戻る</a>
+                            <button type="submit" class="btn btn-outline-secondary col-md-1">変更</button>
+                        </div>
                 </form>
             </div>
         </div>
