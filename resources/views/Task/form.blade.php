@@ -1,7 +1,7 @@
 <link href="{{ asset('css/main.css') }}" rel="stylesheet">
 <div class="container ops-main">
     <div class="card">
-        <div class="card-header">タスク名</div>
+        <div class="card-header">プロジェクト名</div>
             <div class="row">
                 <div class="col-md-8 col-md-offset-1">
                 @if($target == 'store')
@@ -12,7 +12,7 @@
                     @endif
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
-                            <label for="task">タスク名</label>
+                            <label for="task">プロジェクト名</label>
                             <input type="text" class="form-control" name="task" value="{{ $task->task }}">
                         </div>
                         <div class="form-group">

@@ -5,24 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Task;
 use App\Models\User;
-use App\Models\ShowTask;
+use App\Models\TaskViewer;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-class ShowTaskController extends Controller
+class TaskViewerController extends Controller
 {
     public function add(){
-        $showTask = new ShowTask();
+        $viewer = new TaskViewer();
         $tasks = Task::get();
         $users = User::get();
-        return view('User/userAdd', compact('tasks' , 'users' , 'showTask'));
+        return view('User/userAdd', compact('tasks' , 'users' , 'viewer'));
     }
     public function store(Request $request)
     {
-        $showTask = new ShowTask();
+        $viewer = new TaskViewer();
         $task = new Task();
-        $showTask-> taskId = $request->taskId;
-        $showTask-> userId = $request->userId;
-        $showTask -> save();
+        $viewer-> taskId = $request->taskId;
+        $viewer-> userId = $request->userId;
+        $viewer-> save();
 
         return redirect("/home");
     }

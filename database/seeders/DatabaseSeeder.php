@@ -16,10 +16,9 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(TaskTableSeeder::class);
         $this->call(ProjectTableSeeder::class);
-        $this->call(showTaskTableSeeder::class);
-        //$this->call(UserTableSeeder::class);
-        $this->call(GroupsTableSeeder::class);
-        $this->call(UsersGroupsTableSeeder::class);
-        
+        // $this->call(TaskViewerTableSeeder::class);
+        // $this->call(UserTableSeeder::class);
+        // $this->call(GroupsTableSeeder::class);
+        // $this->call(UsersGroupsTableSeeder::class);
     }
 }
