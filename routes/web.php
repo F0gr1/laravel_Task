@@ -40,6 +40,7 @@ Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectControlle
 Route::get('home/group',[App\Http\Controllers\GroupController::class,'index']);
 Route::get('home/group/create',[App\Http\Controllers\GroupController::class,'create']);
 
+Route::get('home/group',[App\Http\Controllers\GroupController::class,'index']);
 Route::post('home/group/store',[App\Http\Controllers\GroupController::class,'store']);
 Route::get('home/group/edit/{groupId}',[App\Http\Controllers\GroupController::class,'edit']);
 Route::post('home/group/update/{groupId}',[App\Http\Controllers\GroupController::class,'update']);
