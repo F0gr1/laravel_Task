@@ -1,34 +1,27 @@
 @extends('layouts.app')
-<link href="{{ asset('css/main.css') }}" rel="stylesheet">
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">グループ</div>
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-                </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-                            <table class="table text-out-center">
+                        <table class="table text-center">
                             <tr>
-                                <th class="text-center">グループ</th>
-                                <th class="text-center">編集</th>
-                                <th class="text-center">削除</th>
+                                <th class="text-center bg-dark text-white">グループ</th>
+                                <th class="text-center bg-dark text-white">編集</th>
+                                <th class="text-center bg-dark text-white">削除</th>
                             </tr>
                             @foreach($groups as $group)
                             <tr>
-                                <th class = "text-center">{{$group->group_name}}</th>
-                                <th class = "text-center">編集</th>
+                                    <td class = "text-dark">{{$group->group_name}}</th>
+                                <td>
+                                    <a href="/home/group/edit/{{ $group->id }}" class="text-dark" >
+                                        <i class="far fa-edit p-2"></i>
+                                    </a>
+                                </td>
                                 <!-- 編集画面へ移行するボタンの実装予定 -->
-                                <td class = "text-center">
+                                <td>
                                     <button type="button"
                                             class="btn btn-xs"
                                             aria-label="Left Align"
@@ -37,16 +30,14 @@
                                                 'group',
                                                 '{{csrf_token()}}')"
                                     >
-                                        <span class="glyphicon glyphicon-trash"></span>
+                                        <i class="far fa-trash-alt"></i>
                                     </button>
                                 </td>
                             </tr>
                             @endforeach
                             </table>                       
-
-                            <div>
-                                <a href="/home/group/create" class="btn btn-outline-success">新規作成</a></div>
-                        </div>
+                            <div class= "offset-md-10">
+                                <a href="/home/group/create" class="btn btn-outline-secondary">新規作成</a></div>
                     </div>
                 </div>
             </div>
