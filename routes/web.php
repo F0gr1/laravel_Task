@@ -39,10 +39,13 @@ Route::get('home/task/{project}/detail' , [App\Http\Controllers\ProjectControlle
 
 Route::get('home/group',[App\Http\Controllers\GroupController::class,'index']);
 Route::get('home/group/create',[App\Http\Controllers\GroupController::class,'create']);
+
 Route::post('home/group/store',[App\Http\Controllers\GroupController::class,'store']);
 Route::get('home/group/edit/{groupId}',[App\Http\Controllers\GroupController::class,'edit']);
 Route::post('home/group/update/{groupId}',[App\Http\Controllers\GroupController::class,'update']);
 Route::Delete('home/group/delete/{id}',[App\Http\Controllers\GroupController::class,'delete']);
 
-Route::get('user/addPage',[App\Http\Controllers\ShowTaskController::class, 'add']);
-Route::post('user/add',[App\Http\Controllers\ShowTaskController::class, 'store']);
+// Route::post('home/group',[App\Http\Controllers\GroupController::class,'store']);
+// Route::Delete('home/group/{id}',[App\Http\Controllers\GroupController::class,'delete']);
+Route::get('user/addPage',[App\Http\Controllers\TaskViewerController::class, 'add']);
+Route::post('user/add',[App\Http\Controllers\TaskViewerController::class, 'store']);

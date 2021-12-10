@@ -17,13 +17,13 @@ class TaskTableSeeder extends Seeder
 
         // 初期データ用意（列名をキーとする連想配列）
         for ($i = 1; $i <= 10; $i++) {
-          $tasks = [
-                      [
-                          'task' => 'name'.$i,
-                          'user' => 'user'.$i,
-                      ]
-          ];
-          DB::table('tasks')->insert($tasks);
-      }
+            $tasks = [
+                        [
+                            'task' => 'name'.$i,
+                            'user' => 'user'.$i,
+                        ]
+            ];
+            DB::table('tasks')->insert($tasks);
+        }
     }
 }
