@@ -53,6 +53,7 @@
                     <a href="/home/create" class="btn btn-outline-success">新規作成</a>
                 </div>
                 </div>
+                <div class="d-flex justify-content-center">{{ $tasks->links() }}</div>
             </div>
         </div>
     </div>
