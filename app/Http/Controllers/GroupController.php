@@ -60,7 +60,7 @@ class GroupController extends Controller
     {
         $group = new Group();
         $userId = Auth::id();
-        $group->group_leader_id = $userid;
+        $group->group_leader_id = $userId;
         $users = User::get();
         return view('Group/create', compact('group', 'users'));
     }
