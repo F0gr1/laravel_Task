@@ -28,23 +28,31 @@
                                 <th class = "text-center">{{$group->group_name}}</th>
                                 <th class = "text-center">編集</th>
                                 <td class = "text-center">
-                                    <form action="/home/group/{{$group->id}}" method="post">
-                                        <input type="hidden" name="_method" value="DELETE">
-                                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                        <button type="submit" class="btn btn-xs btn-danger" aria-label="Left Align"><span class="glyphicon glyphicon-trash"></span></button>
-                                    </form>
+                                    <button type="button"
+                                            class="btn btn-xs btn-danger"
+                                            aria-label="Left Align"
+                                            onclick="alertAndDelete(
+                                                '/group/{{$group->id}}',
+                                                'group',
+                                                '{{csrf_token()}}')"
+                                    >
+                                        <span class="glyphicon glyphicon-trash"></span>
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
-                            </table>                            
+                            </table>                       
+
                             <div>
                                 <a href="/home/group/create" class="btn btn-outline-success">新規作成</a></div>
                         </div>
                     </div>
                 </div>
+                <div class="d-flex justify-content-center">{{ $groups->links() }}</div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
 
