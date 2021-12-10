@@ -25,20 +25,27 @@
                                     </a>
                                 </td>
                                 <td>
-                                <form action="/home/{{ $task->id }}" method="post">
-                                    <input type="hidden" name="_method" value="DELETE">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-xs " aria-label="Left Align"><i class="far fa-trash-alt"></i></button>
-                                </form>
+                                    <button type="button"
+                                            class="btn btn-xs"
+                                            aria-label="Left Align"
+                                            onclick="alertAndDelete(
+                                                '/home/{{ $task->id }}',
+                                                'task',
+                                                '{{csrf_token()}}')"
+                                    >
+                                    <i class="far fa-trash-alt"></i>
+                                    </button>
                                 </td>
                             </tr>
                             @endforeach
                         </table>
+                        <div class= "offset-md-10">
+                            <a href="/home/create" class="btn btn-outline-secondary">新規作成</a>
+                        </div> 
                     </div>
-                    <div class= "col-md-11  text-right">
-                    <a href="/home/create" class="btn btn-outline-secondary">新規作成</a>
-                </div> 
                 </div>
+                </div>
+                <div class="d-flex justify-content-center">{{ $tasks->links() }}</div>
             </div>
         </div>
     </div>

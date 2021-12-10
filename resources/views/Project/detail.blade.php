@@ -1,12 +1,6 @@
 @extends('layouts.app')
-<link href="{{ asset('css/main.css') }}" rel="stylesheet">
 @section('content')
 <div class="container ops-main">
-    <div class="row">
-        <div class="col-md-6">
-            <h2>プロジェクト詳細</h2>
-        </div>
-    </div>
     <div class="card-body">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">

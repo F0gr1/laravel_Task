@@ -9,13 +9,14 @@
 
 
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
+    <style>.pagination { justify-content: center; }</style> 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/index_app.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
@@ -59,7 +60,7 @@
                                     <a class="nav-link" href="/home/group">グループ一覧</a>
                                 @endif
                                 </div>
-                            </li>    
+                            </li>
                             <li class="nav-item dropdown px-4">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     ユーザーを追加
@@ -69,7 +70,7 @@
                                         Myタスクのユーザーの追加
                                     </a>
                                 </div>
-                            </li>    
+                            </li>
                             <li class="nav-item dropdown ">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
@@ -95,5 +96,21 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        let alertAndDelete = (target, type, token)=>{
+            console.log(target, type);
+            let res = confirm("Delete this " + type +" ?");
+            if (res){
+                let header = new Headers();
+                header.append("X-CSRF-TOKEN", token);
+                console.log(header.get("X-CSRF-TOKEN"))
+                fetch(target, {
+                    method: 'DELETE',
+                    headers: header
+                });
+            }
+        }
+    </script>
 </body>
 </html>
