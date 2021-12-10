@@ -6,9 +6,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <tr>
-                        <th>タスク</th>
-                    <tr>
                 </div>
                 <div class="card-body">
                     @if (session('status'))
@@ -49,7 +46,11 @@
                             <div>
                                 <a href="/home/create" class="btn btn-outline-success">新規作成</a>
                         </div>
+
                     </div>
+                    <div class= "col-md-11  text-right">
+                    <a href="/home/create" class="btn btn-outline-success">新規作成</a>
+                </div> 
                 </div>
                 <div class="d-flex justify-content-center">{{ $tasks->links() }}</div>
             </div>

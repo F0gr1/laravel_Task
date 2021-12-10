@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-class showTaskTableSeeder extends Seeder
+class TaskViewerTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class showTaskTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('show_tasks')->truncate();
+        DB::table('task_viewers')->truncate();
         // 初期データ用意（列名をキーとする連想配列）
         for ($i = 1; $i <= 10; $i++) {
             $STasks = [
@@ -23,9 +23,8 @@ class showTaskTableSeeder extends Seeder
                             'taskId' => $i,
                         ]
             ];
-            DB::table('show_tasks')->insert($STasks);
+            DB::table('task_viewers')->insert($STasks);
         }
-
         // 登録
 
     }

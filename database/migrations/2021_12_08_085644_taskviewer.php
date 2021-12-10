@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddProgress extends Migration
+class TaskViewer extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class AddProgress extends Migration
      */
     public function up()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->Integer('progress');
+        Schema::create('task_viewers', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('userId');
+            $table->integer('taskId');  
+            $table->timestamps();      
         });
     }
 
@@ -25,8 +28,6 @@ class AddProgress extends Migration
      */
     public function down()
     {
-        Schema::table('projects', function (Blueprint $table) {
-            $table->dropColumn('progress');
-        });
+        Schema::dropIfExists('task_viewers');
     }
 }

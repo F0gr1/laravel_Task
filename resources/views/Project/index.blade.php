@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">プロジェクト</div>
+                <div class="card-header">タスク</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -20,8 +20,8 @@
                         <div class="col-md-10 col-md-offset-1">
                             <table class="table text-center">
                                 <tr>
-                                    <th class="text-center">プロジェクト</th>
-                                    <th class="text-center">ユーザー</th>
+                                    <th class="text-center">タスク</th>
+                                    <th class="text-center">担当者</th>
                                     <th class="text-center">進捗</th>
                                     <th class="text-center">期間</th>
                                     <th class="text-center">編集</th>
@@ -30,7 +30,7 @@
                                 @foreach($Projects as $Project)
                                 <tr>
                                         <td><a href="/home/task/{{ $Project->id }}/detail">{{ $Project->project }}</a></td>
-                                        <td>{{ $Project->User }}</td>
+                                        <td>{{ $Project->PIC }}</td>
                                         <td>{{$Project->progress}}</td>
                                         <td>{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                         <td>

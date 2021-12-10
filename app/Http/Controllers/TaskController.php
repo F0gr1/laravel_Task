@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Task;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use App\Models\ShowTask;
+use App\Models\TaskViewer;
 use Illuminate\Support\Facades\App; 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\Paginator;
@@ -30,7 +30,7 @@ class TaskController extends Controller
     {
         $task = Task::findOrFail($id);
         $userName = Auth::user();
-        // 取得した値をビュー「book/edit」に渡す
+        // 取得した値をビュー「task/edit」に渡す
         return view('Task/edit', compact('task' , 'userName'));
 
     }
@@ -58,11 +58,11 @@ class TaskController extends Controller
         $task->save();
         
         $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
-        $showTask = new ShowTask();
+        $viewer = new TaskViewer();
         $id = Auth::id();
-        $showTask-> taskId = $taskId->id;
-        $showTask->userId =$id;
-        $showTask -> save();
+        $viewer->taskId = $taskId->id;
+        $viewer->userId = $id;
+        $viewer->save();
 
         return redirect("/home");
     }
@@ -70,7 +70,7 @@ class TaskController extends Controller
     {
         try{
             Task::findOrFail($id)->delete();
-            ShowTask::findOrFail($id)->delete();
+            Taskviewer::findOrFail($id)->delete();
         }catch(ModelNotFoundException $e){
             App::abort(404);
         }
