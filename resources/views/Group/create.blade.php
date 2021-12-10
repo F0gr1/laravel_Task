@@ -6,7 +6,7 @@
         <div class="card-header">グループ名</div>
         <div class="row">
             <div class="col-md-8 col-md-offset-1">
-                <form action="/home/group" method="post">
+                <form action="/home/group/store" method="post">
                     @csrf
                         <div class="form-group">
                             <label for="group">グループ名</label>
@@ -14,9 +14,9 @@
                         </div>
                         <div class="form-group">
                             <label for='name'>メンバー</label>
-                            <select name="userId[]"   class='form-control' multiple>
+                            <select name="userId[]" class='form-control' multiple>
                                 @foreach($users as $user)
-                                <option value="{{ $user->id }}"　name="user">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}" name="user">{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>
