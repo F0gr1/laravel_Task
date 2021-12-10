@@ -37,14 +37,14 @@
 
                                     <td>
                                         <button type="button"
-                                                class="btn btn-xs btn-danger"
+                                                class="btn btn-xs"
                                                 aria-label="Left Align"
                                                 onclick="alertAndDelete(
                                                     '/home/task/project/{{ $Project->id }}',
                                                     'project',
                                                     '{{csrf_token()}}')"
                                         >
-                                            <span class="glyphicon glyphicon-trash"></span>
+                                            <i class="far fa-trash-alt"></i>
                                         </button>
 
                                 </tr>
