@@ -6,7 +6,7 @@
         </div>
     <div class="card-body">
         <div class="row">
-            <div class="col-md-8 offset-md-1">
+            <div class="col-md-8">
             @if($target == 'store')
                 <form action="/home/task/{$Task->id}}" method="post">
                 @elseif($target == 'update')
