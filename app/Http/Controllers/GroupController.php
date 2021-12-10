@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\DB;
 class GroupController extends Controller
 {
     public function index()
@@ -23,11 +23,15 @@ class GroupController extends Controller
         // ON id = group_id
         // 
         // groupsとその所属メンバーを渡すのではなく↑から作られる表一枚を渡したい。
-
+        $groupQuery = (DB::raw('SELECT group_id, COUNT(*) FROM users_groups GROUP BY group_id'));
+        $gro = Group::select()
+                ->leftJoin("({$groupQuery}) AS gq",
+                'gq.group_id', '=', 'id');
+            // ->joinSub($groupQuery, 'group_query', function ($join) {
+            //     $join->on('id', '=', 'group_query.group_id');
+            // })->get();
         $userId = Auth::id();
-        $groups = Group::where('group_leader_id' , '=' , $userId)
-
-        ->get();
+        $groups = Group::where('group_leader_id' , '=' , $userId)->get();
         $groupMembers = [];
         foreach($groups as $group){
             $groupId = $group->id;
