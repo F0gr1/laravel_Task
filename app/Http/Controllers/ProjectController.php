@@ -12,7 +12,7 @@ class ProjectController extends Controller
     public function index($id)
     {
         $Task = Task::findOrFail($id);
-        $Projects = DB::table('projects')->where('taskId' , $id)->get();
+        $Projects = DB::table('projects')->where('taskId' , $id)->paginate(7);
         return view('Project/index', compact('Projects' , 'Task'));
     }
     public function detail($id){
