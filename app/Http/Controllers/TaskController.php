@@ -21,8 +21,8 @@ class TaskController extends Controller
     {
         $userId = Auth::id();
         $tasks = DB::table('tasks')
-        ->join('show_tasks as S','S.taskId','=','tasks.id')
-        ->where('S.userId' , '=' , $userId)
+        ->join('task_viewers as tv','tv.taskId','=','tasks.id')
+        ->where('tv.userId' , '=' , $userId)
         ->paginate(7);
         return view('Task/index', compact('tasks'));
     }

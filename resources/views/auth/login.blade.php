@@ -19,7 +19,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/index_app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
 @section('content')
@@ -32,7 +32,7 @@
         　
             <!-- <div class="card-header">{{ __('Login') }} </div> -->
             <div class="card">
-            　   <i class="fas fa-user fa-9x " style="color:lightgreen;"></i>
+            　   <i class="fas fa-user fa-9x " ></i>
                     <div clss="card-body">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
@@ -65,15 +65,15 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-md-5 offset-md-4">
-                                        <button type="submit" class="btn btn-outline-success">
+                                        <button type="submit" class="btn btn-outline-dark">
                                             {{ __('Login') }}
                                         </button>
-                                        @if (Route::has('password.request'))
+                                        <!-- @if (Route::has('password.request'))
                                             <a class="btn btn-link" href="{{ route('password.request') }}">
                                                 {{ __('Forgot Your Password?') }}
                                             </a>
-                                        @endif
-                                        <a class="btn btn-outline-success" href="{{ route('register') }}">{{ "新規登録の方"}}</a>
+                                        @endif -->
+                                        <a class="btn btn-outline-dark" href="{{ route('register') }}">{{ "新規登録の方"}}</a>
                                 </div>
                             </div>
                         </form> 
