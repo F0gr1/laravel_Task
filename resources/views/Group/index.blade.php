@@ -9,12 +9,14 @@
                         <table class="table text-center">
                             <tr>
                                 <th class="text-center bg-dark text-white">グループ</th>
+                                <th class="text-center bg-dark text-white">人数</th>
                                 <th class="text-center bg-dark text-white">編集</th>
                                 <th class="text-center bg-dark text-white">削除</th>
                             </tr>
                             @foreach($groups as $group)
                             <tr>
-                                    <td class = "text-dark">{{$group->group_name}}</th>
+                                <td class = "text-dark">{{$group->group_name}}</td>
+                                <td class = "text-dark">{{$group->SUM}}</td>
                                 <td>
                                     <a href="/home/group/edit/{{ $group->id }}" class="text-dark" >
                                         <i class="far fa-edit p-2"></i>
