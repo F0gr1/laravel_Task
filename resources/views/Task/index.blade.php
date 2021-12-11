@@ -44,8 +44,7 @@
                         </div> 
                     </div>
                 </div>
-                </div>
-                <div class="d-flex justify-content-center">{{ $tasks->links() }}</div>
+                <div class="d-flex justify-content-center text-dark ">{{ $tasks->links() }}</div>
             </div>
         </div>
     </div>

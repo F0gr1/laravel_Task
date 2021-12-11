@@ -12,38 +12,64 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Pagination\Paginator;
-
+use Illuminate\Support\Facades\DB;
 class GroupController extends Controller
 {
     public function index()
     {
+
+        // SELECT * FROM groups
+        // LEFT OUTER JOIN (SELECT group_id, COUNT(*) FROM users_groups GROUP BY group_id)
+        // ON id = group_id
+        // 
+        // groupsとその所属メンバーを渡すのではなく↑から作られる表一枚を渡したい。
         $userId = Auth::id();
-        $groups = Group::where('group_leader_id' , '=' , $userId)
-        ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
-        ->paginate(7);
+        $subQuery =  DB::table('users_groups')
+                    ->select('group_id',  DB::raw('count(*) AS SUM'))
+                    ->groupBy('group_id');
+        $groups = DB::table('groups')
+                    ->joinSub($subQuery, 'group_query', function ($join) {
+                        $join->on('id', '=', 'group_query.group_id');
+                    })
+                    ->where('group_leader_id' , '=' , $userId)
+                    ->get();
+        // $groups = Group::where('group_leader_id' , '=' , $userId)->get();
+        // $groupMembers = [];
+        // foreach($groups as $group){
+        //     $groupId = $group->id;
+        //     $groupMembers[$groupId] = UsersGroup::where('group_id', '=', $groupId)->count();
+        // }
         return view('Group/index', compact('groups'));
+        // ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
+        // ->paginate(7);
+        // return view('Group/index', compact('groups'));
+
     }
 
     public function edit($groupId)
     {
         $group = Group::findOrFail($groupId);
-        $userId = UsersGroup::where('group_id' , '=' , $groupId)->get();
-        $user = User::find($userId);
-        return view('Group/edit', compact('group' , 'user'));
+        // グループに所属しているユーザーを取得する
+        // $usersGroups = UsersGroup::where('group_id' , '=' , $groupId)->get();
+        // foreach($usersGroups as $usersGroup){
+        //     $users = User::where('id', '=', $usersGroup->user_id);
+        // }
+        $users = User::get();
+        return view('Group/edit', compact('group', 'users'));
     }
 
     public function create()
     {
         $group = new Group();
-        $user = Auth::user();
-        $group->group_leader_id = $user->id;
+        $userId = Auth::id();
+        $group->group_leader_id = $userId;
         $users = User::get();
-        return view('Group/create', compact('group','users'));
+        return view('Group/create', compact('group', 'users'));
     }
 
-    public function update(Request $request , $id){
-        $group = Group::findOrFail($id);
-        $group->group_name = $request->group_name;
+    public function update(Request $request, $groupid){
+        $group = Group::findOrFail($groupid);
+        $group->group_name = $request->group;
         $group->save();
         UsersGroup::where('group_id', '=', $group->id)->delete();
         foreach($request->userId as $userId){
@@ -52,7 +78,7 @@ class GroupController extends Controller
             $userGroup->group_id = $group->id;
             $userGroup->save();
         }
-        return redirect("Group/index");
+        return $this->index();
     }
 
     public function store(Request $request){

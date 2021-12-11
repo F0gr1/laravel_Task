@@ -5,7 +5,7 @@
                 プロジェクト
         </div>
         <div class="row justify-content-center">
-            <div class="col-md-8 offset-md-1 p-4">
+            <div class="col-md-8  p-4">
             @if($target == 'store')
                 <form action="/home" method="post">
                 @elseif($target == 'update')
@@ -23,7 +23,7 @@
                         <input type='hidden' class="form-control " name="user" value="{{ $userName->name }}"/> 
                     </div>
                     <div class="d-flex">
-                        <a href='/home' class='col-md-1 text-dark pt-2  offset-md-11 col-md-1' >戻る</a>
+                        <a href='/home' class='col-md-1 text-dark pt-2  offset-md-11' >戻る</a>
                         <button type="submit" class="btn btn-outline-secondary col-md-1">登録</button>
                     </div>
                 </form>
