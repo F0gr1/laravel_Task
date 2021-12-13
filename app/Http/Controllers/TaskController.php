@@ -66,7 +66,7 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        if($request->group_id){
+        if(isset($request->group_id)){
             foreach($request->group_id as $groupId){
                 $task = new Task();
                 $task->task = $request->task;
