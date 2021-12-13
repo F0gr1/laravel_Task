@@ -66,20 +66,33 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        foreach($request->group_id as $groupId){
+        if($request->group_id){
+            foreach($request->group_id as $groupId){
+                $task = new Task();
+                $task->task = $request->task;
+                $task->user = $request->user;
+                $task->group_id = $groupId;
+                $users=UsersGroup::where('group_id', '=', $groupId)->get();
+                $task->save();
+                foreach($users as $user){
+                    $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
+                    $viewer = new TaskViewer();
+                    $viewer->taskId = $taskId->id;
+                    $viewer->userId = $user->user_id;
+                    $viewer->save();
+                }
+            }
+        }else{
             $task = new Task();
             $task->task = $request->task;
             $task->user = $request->user;
-            $task->group_id = $groupId;
-            $users=UsersGroup::where('group_id', '=', $groupId)->get();
             $task->save();
-            foreach($users as $user){
-                $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
-                $viewer = new TaskViewer();
+            $user_id =Auth::id();
+            $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
+            $viewer = new TaskViewer();
                 $viewer->taskId = $taskId->id;
-                $viewer->userId = $user->user_id;
+                $viewer->userId = $user_id;
                 $viewer->save();
-            }
         }
 
         return redirect("/home");
