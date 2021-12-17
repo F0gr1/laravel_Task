@@ -15,8 +15,8 @@
                             </tr>
                             @foreach($groups as $group)
                             <tr>
-                                    <td class = "text-dark">{{$group->group_name}}</td>
-                                    <td class = "text-dark">{{$group->SUM}}</th>
+                                <td class = "text-dark">{{$group->group_name}}</td>
+                                <td class = "text-dark">{{$group->SUM}}</td>
                                 <td>
                                     <a href="/home/group/edit/{{ $group->id }}" class="text-dark" >
                                         <i class="far fa-edit p-2"></i>
