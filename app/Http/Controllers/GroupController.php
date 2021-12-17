@@ -22,6 +22,7 @@ class GroupController extends Controller
         // LEFT OUTER JOIN (SELECT group_id, COUNT(*) FROM users_groups GROUP BY group_id)
         // ON id = group_id
         // 
+
         // groupsとその所属メンバーを渡すのではなく↑から作られる表一枚を渡したい。
         $userId = Auth::id();
         $subQuery =  DB::table('users_groups')
