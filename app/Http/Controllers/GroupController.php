@@ -17,6 +17,7 @@ class GroupController extends Controller
 {
     public function index()
     {
+
         $userId = Auth::id();
         $subQuery =  DB::table('users_groups')
                     ->select('group_id',  DB::raw('count(*) AS SUM'))
