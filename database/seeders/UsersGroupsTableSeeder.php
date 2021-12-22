@@ -14,7 +14,7 @@ class UsersGroupsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users_groups')->truncate();
+        // DB::table('users_groups')->truncate();
 
         // 初期データ用意（列名をキーとする連想配列）
     for ($i = 1; $i <= 10; $i++) {

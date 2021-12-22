@@ -30,7 +30,8 @@ class ProjectController extends Controller
     {
         $Projects = Project::findOrFail($id);
         $Projects->fill($request->all())->save();
-        return back();
+        $task_id = $Projects->taskId;
+        return  redirect('home/task/' . $task_id);
     }
     public function create($id)
     {
@@ -38,21 +39,23 @@ class ProjectController extends Controller
         $Project = new Project();
         $Task = Task::findOrFail($id);
         $users = User::get();
+
         return view('Project/create', compact('Project', 'Task' , 'users'));
     }
 
     public function store(Request $request)
     {
-        $Projects = new Project();
-        $Projects->fill($request->all())->save();
-        return redirect("/home");
+        $projects = new Project();
+        $projects->fill($request->all())->save();
+        $task_id = $Projects->taskId;
+        return  redirect('home/task/' . $task_id);
     }
     public function delete($id)
     {
-        $task = Project::findOrFail($id);
-        $task->delete();
-    
-        return redirect("/home/");
+        $project = Project::findOrFail($id);
+        $task_id = $project->taskId;
+        $project->delete();
+        return  redirect('home/task/'.$task_id);
     }
 
 }
