@@ -22,6 +22,14 @@
                         <label class="form-control col-md-9 " name="User" > {{ $userName->name }}</label>
                         <input type='hidden' class="form-control " name="user" value="{{ $userName->name }}"/> 
                     </div>
+                    <div class="form-group d-flex">
+                            <label for='group' class='col-md-3'>グループ</label>
+                            <select name="group_id[]" class='form-control' multiple>
+                                @foreach($groups as $group)
+                                <option value="{{ $group->id }}" name="group">{{ $group->group_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     <div class="d-flex">
                         <a href='/home' class='col-md-1 text-dark pt-2  offset-md-11' >戻る</a>
                         <button type="submit" class="btn btn-outline-secondary col-md-1">登録</button>

@@ -18,12 +18,6 @@ class GroupController extends Controller
     public function index()
     {
 
-        // SELECT * FROM groups
-        // LEFT OUTER JOIN (SELECT group_id, COUNT(*) FROM users_groups GROUP BY group_id)
-        // ON id = group_id
-        // 
-
-        // groupsとその所属メンバーを渡すのではなく↑から作られる表一枚を渡したい。
         $userId = Auth::id();
         $subQuery =  DB::table('users_groups')
                     ->select('group_id',  DB::raw('count(*) AS SUM'))
@@ -33,28 +27,13 @@ class GroupController extends Controller
                         $join->on('id', '=', 'group_query.group_id');
                     })
                     ->where('group_leader_id' , '=' , $userId)
-                    ->get();
-        // $groups = Group::where('group_leader_id' , '=' , $userId)->get();
-        // $groupMembers = [];
-        // foreach($groups as $group){
-        //     $groupId = $group->id;
-        //     $groupMembers[$groupId] = UsersGroup::where('group_id', '=', $groupId)->count();
-        // }
+                    ->paginate(7);
         return view('Group/index', compact('groups'));
-        // ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')
-        // ->paginate(7);
-        // return view('Group/index', compact('groups'));
-
     }
 
     public function edit($groupId)
     {
         $group = Group::findOrFail($groupId);
-        // グループに所属しているユーザーを取得する
-        // $usersGroups = UsersGroup::where('group_id' , '=' , $groupId)->get();
-        // foreach($usersGroups as $usersGroup){
-        //     $users = User::where('id', '=', $usersGroup->user_id);
-        // }
         $users = User::get();
         return view('Group/edit', compact('group', 'users'));
     }
