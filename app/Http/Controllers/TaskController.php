@@ -59,14 +59,9 @@ class TaskController extends Controller
 
         return redirect("/home");
     }
-    public function delete($id)
+    public function delete(int $id , TaskServices $task_services)
     {
-        try{
-            Task::findOrFail($id)->delete();
-            Taskviewer::findOrFail($id)->delete();
-        }catch(ModelNotFoundException $e){
-            App::abort(404);
-        }
+        $task_services-> taskDelete($id);
         return redirect("/home");
     }
 
