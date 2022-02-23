@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\Group;
 use App\Models\TaskViewer;
 use App\Models\UsersGroup;
+use App\Services\TaskServices;
 use Illuminate\Support\Facades\App; 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Pagination\Paginator;
@@ -19,80 +20,41 @@ class TaskController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(TaskServices $task_services)
     {
-        $userId = Auth::id();
-        $tasks = DB::table('tasks')
-        ->join('task_viewers as tv','tv.taskId','=','tasks.id')
-        ->where('tv.userId' , '=' , $userId)
-        ->paginate(7);
+        $tasks = $task_services->index();
         return view('Task/index', compact('tasks'));
     }
-    public function edit($id)
+    public function edit(int $id , TaskServices $task_services)
     {
-        $task = Task::findOrFail($id);
-        $userName = Auth::user();
-        // 取得した値をビュー「task/edit」に渡す
-        $user_id = Auth::id();
-        $groups = DB::table('groups')
-        ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')        
-        ->where('users_groups.user_id', '=' , $user_id)
-        ->get();
-        return view('Task/edit', compact('task' , 'userName' , 'groups'));
 
+        $task = $task_services->getTask($id);
+        $userName = $task_services->getName();
+        $groups = $task_services->getGroup();
+        return view('Task/edit', compact('task' , 'userName' , 'groups'));
     }
-    public function update(Request $request , $id){
-        foreach($request->group_id as $groupId){
-            $task = Task::findOrFail($id);
-            $task->task = $request->task;
-            $task->user = $request->user;
-            $task->group_id = $groupId;
-            $task->save();
-        }
+    public function update(Request $request , int $id ,TaskServices $task_services){
+        $task_services->taskUpdate($request , $id);
         return redirect("/home");
     }
-    public function create()
+    public function create(TaskServices $task_services)
     {
         // 空の$taskを渡す
         $user_id = Auth::id();
         $task = new Task();
-        $groups = DB::table('groups')
-        ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')        
-        ->where('users_groups.user_id', '=' , $user_id)
-        ->get();
-        $userName = Auth::user();
+        $groups = $task_services->getGroups($user_id);
+        $userName = $task_services->getName();
         return view('Task/create', compact('task' , 'userName','groups'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request , TaskServices $task_services)
     {
         if(isset($request->group_id)){
             foreach($request->group_id as $groupId){
-                $task = new Task();
-                $task->task = $request->task;
-                $task->user = $request->user;
-                $task->group_id = $groupId;
-                $users=UsersGroup::where('group_id', '=', $groupId)->get();
-                $task->save();
-                foreach($users as $user){
-                    $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
-                    $viewer = new TaskViewer();
-                    $viewer->taskId = $taskId->id;
-                    $viewer->userId = $user->user_id;
-                    $viewer->save();
-                }
+                $task_services->TaskGroupStore( $request , $groupId);
             }
         }else{
-            $task = new Task();
-            $task->task = $request->task;
-            $task->user = $request->user;
-            $task->save();
-            $user_id =Auth::id();
-            $taskId = DB::table('tasks')->orderby('id' , 'desc')->first();
-            $viewer = new TaskViewer();
-                $viewer->taskId = $taskId->id;
-                $viewer->userId = $user_id;
-                $viewer->save();
+            $task_services->taskStore($request);
         }
 
         return redirect("/home");
