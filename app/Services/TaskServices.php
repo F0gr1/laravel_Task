@@ -78,11 +78,19 @@ class TaskServices
         }
 
     }
-    public function taskViewrStore($user_id){
+    public function taskViewrStore(int $user_id){
         $task = DB::table('tasks')->orderby('id' , 'desc')->first();
         $viewer = new TaskViewer();
         $viewer->taskId = $task->id;
         $viewer->userId = $user_id;
         $viewer->save();
+    }
+    public function taskDelete(int $id){
+        try{
+            Task::findOrFail($id)->delete();
+            Taskviewer::findOrFail($id)->delete();
+        }catch(ModelNotFoundException $e){
+            App::abort(404);
+        }
     }
 }
