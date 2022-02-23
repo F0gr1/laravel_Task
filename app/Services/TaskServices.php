@@ -62,7 +62,7 @@ class TaskServices
         $task = new Task();
         $task->fill($request->all())->save();
         $user_id = Auth::id();
-        // taskViewrStore($user_id);
+        $this->taskViewrStore($user_id);
     }
     public function taskGroupStore(  Request $request , int $groupId){
         $task = new Task();
@@ -72,8 +72,9 @@ class TaskServices
         $task->save();
         $users=UsersGroup::where('group_id', '=', $groupId)->get();
         foreach($users as $user){
-            $user_id = $user->id;
-            // taskViewrStore($user_id);
+            
+            $user_id = $user->user_id;
+            $this->taskViewrStore($user_id);
         }
 
     }
