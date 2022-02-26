@@ -14,9 +14,9 @@ class TaskViewer extends Migration
     public function up()
     {
         Schema::create('task_viewers', function (Blueprint $table) {
-            $table->integer('userId');
-            $table->integer('taskId');  
-            $table->timestamps();      
+            $table->id();
+            $table->integer('userId')->references('id')->on('users');;
+            $table->integer('taskId')->references('id')->on('task');;      
         });
     }
 
