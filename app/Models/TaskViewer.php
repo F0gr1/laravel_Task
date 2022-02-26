@@ -9,15 +9,15 @@ class TaskViewer extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'userId',
-        'taskId',
+        'user_id',
+        'task_id',
     ];
     public function task()
     {
-        return $this->belongsTo(Task::class , 'taskId');
+        return $this->belongsTo(Task::class , 'task_id');
     }
     public function user()
     {
-        return $this->belongsTo(User::class , 'userId');
+        return $this->belongsTo(User::class , 'user_id');
     }
 }
