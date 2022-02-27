@@ -24,6 +24,6 @@ class Task extends Model
     //hasMany設定
     public function view()
     {
-        return $this->hasMany(TaskViewer::class, 'id', 'taskId');
+        return $this->hasMany(TaskViewer::class);
     }
 }
