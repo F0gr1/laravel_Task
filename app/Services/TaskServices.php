@@ -17,10 +17,10 @@ class TaskServices
 {
     //
     public function index(){
-        $userId = Auth::id();
+        $user_id = Auth::id();
         $tasks = DB::table('tasks')
-        ->join('task_viewers as tv','tv.taskId','=','tasks.id')
-        ->where('tv.userId' , '=' , $userId)
+        ->join('task_viewers as tv','tv.task_id','=','tasks.id')
+        ->where('tv.user_id' , '=' , $user_id)
         ->paginate(7);
         return $tasks;
     }
@@ -81,8 +81,8 @@ class TaskServices
     public function taskViewrStore(int $user_id){
         $task = DB::table('tasks')->orderby('id' , 'desc')->first();
         $viewer = new TaskViewer();
-        $viewer->taskId = $task->id;
-        $viewer->userId = $user_id;
+        $viewer->task_id = $task->id;
+        $viewer->user_id = $user_id;
         $viewer->save();
     }
     public function taskDelete(int $id){
