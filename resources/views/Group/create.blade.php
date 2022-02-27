@@ -14,7 +14,7 @@
                         </div>
                         <div class="form-group d-flex">
                             <label for='name' class='col-md-3'>メンバー</label>
-                            <select name="userId[]" class='form-control' multiple>
+                            <select name="user_id[]" class='form-control' multiple>
                                 @foreach($users as $user)
                                 <option value="{{ $user->id }}" name="user">{{ $user->name }}</option>
                                 @endforeach

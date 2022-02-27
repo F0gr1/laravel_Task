@@ -16,11 +16,11 @@
                             @foreach($tasks as $task)
                             <tr>
                                 <td>
-                                    <b><a href="/home/task/{{$task ->taskId}}" class="text-dark">{{ $task->task }}</a> </b>
+                                    <b><a href="/home/task/{{$task ->task_id}}" class="text-dark">{{ $task->task }}</a> </b>
                                 </td>
                                 <td class="text-dark">{{ $task->user }}</td>
                                 <td>
-                                    <a href="/home/{{ $task->taskId }}/edit" class="text-dark">
+                                    <a href="/home/{{ $task->task_id }}/edit" class="text-dark">
                                     <i class="far fa-edit p-2"></i>
                                     </a>
                                 </td>
@@ -29,7 +29,7 @@
                                             class="btn btn-xs"
                                             aria-label="Left Align"
                                             onclick="alertAndDelete(
-                                                '/home/{{ $task->taskId }}',
+                                                '/home/{{ $task->task_id }}',
                                                 'task',
                                                 '{{csrf_token()}}')"
                                     >
