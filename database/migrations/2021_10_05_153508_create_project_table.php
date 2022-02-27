@@ -15,7 +15,7 @@ class CreateProjectTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('taskId', 50)->references('id')->on('tasks');;
+            $table->string('task_id', 50)->references('id')->on('tasks');;
             $table->string('project' , 50);
             $table->string('PIC' , 50)->references('id')->on('users');;
             $table->integer('progress');
