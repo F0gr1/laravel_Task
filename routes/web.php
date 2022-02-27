@@ -29,7 +29,7 @@ Route::post('/home/task/{projectId}',[App\Http\Controllers\ProjectController::cl
 Route::get('/home/task/{projectId}/edit' , [App\Http\Controllers\ProjectController::class , 'edit']);
 Route::put('/home/task/{projectId}' ,[App\Http\Controllers\ProjectController::class , 'update']);
 Route::Delete('home/task/project/{projectId}' , [App\Http\Controllers\ProjectController::class , 'delete']);
-Route::get('home/task/{taskId}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
+Route::get('home/task/{task_id}/detail' , [App\Http\Controllers\ProjectController::class, 'detail']);
 
 // mail認証
 Route::post('register/pre_check', [App\Http\Controllers\Auth\RegisterController::class,'pre_check'])->name('register.pre_check');
