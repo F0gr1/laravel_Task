@@ -20,8 +20,8 @@ class TaskViewerController extends Controller
     {
         $viewer = new TaskViewer();
         $task = new Task();
-        $viewer-> taskId = $request->taskId;
-        $viewer-> userId = $request->userId;
+        $viewer-> task_id = $request->task_id;
+        $viewer-> user_id = $request->user_id;
         $viewer-> save();
 
         return redirect("/home");
