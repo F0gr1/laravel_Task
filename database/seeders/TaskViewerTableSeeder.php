@@ -19,8 +19,8 @@ class TaskViewerTableSeeder extends Seeder
         for ($i = 1; $i <= 10; $i++) {
             $STasks = [
                         [
-                            'userId' => '1',
-                            'taskId' => $i,
+                            'user_id' => '1',
+                            'task_id' => $i,
                         ]
             ];
             DB::table('task_viewers')->insert($STasks);
