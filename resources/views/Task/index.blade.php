@@ -16,11 +16,11 @@
                             @foreach($tasks as $task)
                             <tr>
                                 <td>
-                                    <b><a href="/home/task/{{$task ->task_id}}" class="text-dark">{{ $task->task }}</a> </b>
+                                    <b><a href="/home/task/{{$task ->id}}" class="text-dark">{{ $task->task }}</a> </b>
                                 </td>
                                 <td class="text-dark">{{ $task->user }}</td>
                                 <td>
-                                    <a href="/home/{{ $task->task_id }}/edit" class="text-dark">
+                                    <a href="/home/{{ $task->id }}/edit" class="text-dark">
                                     <i class="far fa-edit p-2"></i>
                                     </a>
                                 </td>
