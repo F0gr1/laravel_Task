@@ -3,6 +3,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\User;
 use App\Models\Group;
 use App\Models\TaskViewer;
 use App\Models\UsersGroup;
@@ -18,10 +19,7 @@ class TaskServices
     //
     public function index(){
         $user_id = Auth::id();
-        $tasks = DB::table('tasks')
-        ->join('task_viewers as tv','tv.task_id','=','tasks.id')
-        ->where('tv.user_id' , '=' , $user_id)
-        ->paginate(7);
+        $tasks = task::find($user_id)->with('view')->paginate(7);
         return $tasks;
     }
     public function getTask(int $id){
