@@ -34,10 +34,6 @@ class TaskServices
     }
     public function getGroup(){
         $user_id = Auth::id();
-        // $groups = DB::table('groups')
-        // ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')        
-        // ->where('users_groups.user_id', '=' , $user_id)
-        // ->get();
         $groups = Group::find($user_id)->with('group')->get();
         return $groups;
     }
