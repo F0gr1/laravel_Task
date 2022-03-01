@@ -26,4 +26,8 @@ class Task extends Model
     {
         return $this->hasOne(TaskViewer::class , 'task_id');
     }
+    public function project()
+    {
+        return $this->hasMany(Project::class , 'task_id');
+    }
 }
