@@ -12,7 +12,7 @@ class ProjectController extends Controller
     public function index($id)
     {
         $Task = Task::findOrFail($id);
-        $Projects = DB::table('projects')->where('taskId' , $id)->paginate(7);
+        $Projects = DB::table('projects')->where('task_id' , $id)->paginate(7);
         return view('Project/index', compact('Projects' , 'Task'));
     }
     public function detail($id){
@@ -30,7 +30,7 @@ class ProjectController extends Controller
     {
         $Projects = Project::findOrFail($id);
         $Projects->fill($request->all())->save();
-        $task_id = $Projects->taskId;
+        $task_id = $Projects->task_id;
         return  redirect('home/task/' . $task_id);
     }
     public function create($id)
@@ -47,13 +47,13 @@ class ProjectController extends Controller
     {
         $projects = new Project();
         $projects->fill($request->all())->save();
-        $task_id = $Projects->taskId;
+        $task_id = $Projects->task_id;
         return  redirect('home/task/' . $task_id);
     }
     public function delete($id)
     {
         $project = Project::findOrFail($id);
-        $task_id = $project->taskId;
+        $task_id = $project->task_id;
         $project->delete();
         return  redirect('home/task/'.$task_id);
     }

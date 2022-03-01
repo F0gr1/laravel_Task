@@ -16,7 +16,7 @@ class ProjectTableSeeder extends Seeder
         DB::table('projects')->truncate();
         $projects =[
                         [
-                            'taskId'=>'1',
+                            'task_id'=>'1',
                             'project'=>'テスト',
                             'PIC'=>'サトシ',
                             'memo'=>'テスト用のデータ',
@@ -25,7 +25,7 @@ class ProjectTableSeeder extends Seeder
                             'end_date'=>'2021-10-16'
                         ],
                         [
-                            'taskId'=>'2',
+                            'task_id'=>'2',
                             'project'=>'テスト2',
                             'PIC'=>'サトシ',
                             'memo'=>'テスト用のデータ',
