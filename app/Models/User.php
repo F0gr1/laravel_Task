@@ -48,4 +48,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TaskViewer::class , 'user_id');
     }
+    public function  Group()
+    {
+        return $this->belongsToMany(Group::class, 'users_groups');
+        // ->using(UsersGroup::class , 'user_id');
+    }
 }
