@@ -18,7 +18,7 @@ class GroupController extends Controller
     public function index()
     {
 
-        $userId = Auth::id();
+        $user_id = Auth::id();
         $subQuery =  DB::table('users_groups')
                     ->select('group_id',  DB::raw('count(*) AS SUM'))
                     ->groupBy('group_id');
@@ -26,7 +26,7 @@ class GroupController extends Controller
                     ->joinSub($subQuery, 'group_query', function ($join) {
                         $join->on('id', '=', 'group_query.group_id');
                     })
-                    ->where('group_leader_id' , '=' , $userId)
+                    ->where('group_leader_id' , '=' , $user_id)
                     ->paginate(7);
         return view('Group/index', compact('groups'));
     }
@@ -41,8 +41,8 @@ class GroupController extends Controller
     public function create()
     {
         $group = new Group();
-        $userId = Auth::id();
-        $group->group_leader_id = $userId;
+        $user_id = Auth::id();
+        $group->group_leader_id = $user_id;
         $users = User::get();
         return view('Group/create', compact('group', 'users'));
     }
@@ -52,9 +52,9 @@ class GroupController extends Controller
         $group->group_name = $request->group;
         $group->save();
         UsersGroup::where('group_id', '=', $group->id)->delete();
-        foreach($request->userId as $userId){
+        foreach($request->user_id as $user_id){
             $userGroup = new UsersGroup();
-            $userGroup->user_id = $userId;
+            $userGroup->user_id = $user_id;
             $userGroup->group_id = $group->id;
             $userGroup->save();
         }
@@ -66,9 +66,9 @@ class GroupController extends Controller
         $group->group_name = $request->group;
         $group->group_leader_id = Auth::id();
         $group->save();
-        foreach($request->userId as $userId){
+        foreach($request->user_id as $user_id){
             $userGroup = new UsersGroup();
-            $userGroup->user_id = $userId;
+            $userGroup->user_id = $user_id;
             $userGroup->group_id = $group->id;
             $userGroup->save();
         }

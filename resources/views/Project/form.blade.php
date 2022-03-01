@@ -20,11 +20,11 @@
                     </div>
                     @if($target == 'store')
                         <div class="form-group">
-                            <input type="hidden" class="form-control" name="taskId" value="{{ $Task->id}}">
+                            <input type="hidden" class="form-control" name="task_id" value="{{ $Task->id}}">
                         </div>
                     @elseif ($target == 'update')
                         <div class="form-group">
-                            <input type="hidden" class="form-control" name="taskId" value="{{ $Project->taskId}}">
+                            <input type="hidden" class="form-control" name="task_id" value="{{ $Project->task_id}}">
                         </div>
                     @endif
                     <!-- <div class="form-group">

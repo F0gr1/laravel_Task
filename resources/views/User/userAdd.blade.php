@@ -11,7 +11,7 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group d-flex">
                         <label for='name' class='col-md-3'>ユーザー</label>
-                        <select name="userId"   class='form-control'>
+                        <select name="user_id"   class='form-control'>
                             @foreach($users as $user)
                                 <option value="{{$user->id}}"　name="user">{{ $user->name}}</option>
                             @endforeach
@@ -19,7 +19,7 @@
                     </div>
                     <div class="form-group d-flex">
                         <label for='name' class='col-md-3'>タスク</label>
-                        <select name="taskId"  class='form-control'>
+                        <select name="task_id"  class='form-control'>
                             @foreach($tasks as $task )
                                 <option value="{{$task->id }}" name="task">{{ $task->task }}</option>
                             @endforeach 
