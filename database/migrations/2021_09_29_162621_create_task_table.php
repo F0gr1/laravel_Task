@@ -17,7 +17,7 @@ class CreateTaskTable extends Migration
             $table->increments('id');
             $table->String('task', 50);
             $table->String('user' , 50);
-            $table->BigInteger("group_id")->nullable();
+            $table->BigInteger("group_id")->nullable()->references('id')->on('Groups');
             $table->timestamps();
         });
     }
