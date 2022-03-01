@@ -46,6 +46,6 @@ class User extends Authenticatable
     ];
     public function view()
     {
-        return $this->hasMany(TaskViewer::class);
+        return $this->hasMany(TaskViewer::class , 'user_id');
     }
 }
