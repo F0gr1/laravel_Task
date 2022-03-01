@@ -3,7 +3,6 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
-use App\Models\User;
 use App\Models\Group;
 use App\Models\TaskViewer;
 use App\Models\UsersGroup;
@@ -35,10 +34,11 @@ class TaskServices
     }
     public function getGroup(){
         $user_id = Auth::id();
-        $groups = DB::table('groups')
-        ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')        
-        ->where('users_groups.user_id', '=' , $user_id)
-        ->get();
+        // $groups = DB::table('groups')
+        // ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')        
+        // ->where('users_groups.user_id', '=' , $user_id)
+        // ->get();
+        
         return $groups;
     }
     public function taskUpdate(Request $request ,int $id){
@@ -50,10 +50,7 @@ class TaskServices
         }
     }
     public function getGroups(int $user_id){
-        $groups = DB::table('groups')
-        ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')        
-        ->where('users_groups.user_id', '=' , $user_id)
-        ->get();
+        $groups= Group::find($user_id)->with('group')->get();
         return $groups;
     }
     public function taskStore( Request $request ){
@@ -70,7 +67,6 @@ class TaskServices
         $task->save();
         $users=UsersGroup::where('group_id', '=', $groupId)->get();
         foreach($users as $user){
-            
             $user_id = $user->user_id;
             $this->taskViewrStore($user_id);
         }
