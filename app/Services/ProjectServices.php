@@ -3,6 +3,7 @@ namespace App\Services;
 
 use Illuminate\Http\Request;
 use App\Models\Task;
+use App\Models\Project;
 use App\Models\Group;
 use App\Models\TaskViewer;
 use App\Models\UsersGroup;
@@ -13,12 +14,12 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class TaskServices
+class ProjectServices
 {
     //
     public function index(){
         $user_id = Auth::id();
-        $tasks = task::find($user_id)->with('view')->paginate(7);
+        $tasks = Project::find($user_id)->with('view')->paginate(7);
         return $tasks;
     }
     public function getTask(int $id){
@@ -38,7 +39,7 @@ class TaskServices
         // ->join('users_groups', 'groups.id', '=', 'users_groups.group_id')        
         // ->where('users_groups.user_id', '=' , $user_id)
         // ->get();
-        $groups = Group::find($user_id)->with('group')->get();
+        
         return $groups;
     }
     public function taskUpdate(Request $request ,int $id){
