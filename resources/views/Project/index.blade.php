@@ -25,12 +25,12 @@
                                 </tr>
                                 @foreach($Projects as $Project)
                                 <tr>
-                                        <td><a href="/home/task/{{ $Project->id }}/detail" class="text-dark">{{ $Project->project }}</a></td>
+                                        <td><a href="{{ route('projects.detail', ['project' => $Project]) }}" class="text-dark">{{ $Project->project }}</a></td>
                                         <td class="text-dark">{{ $Project->PIC }}</td>
                                         <td class="text-dark">{{$Project->progress}}</td>
                                         <td class="text-dark">{{ $Project->start_date }}　〜　{{ $Project->end_date }}</td>
                                         <td>
-                                        <a href="/home/task/{{ $Project->id }}/edit" class="text-dark" >
+                                        <a href="{{ route('projects.edit', ['project' => $Project]) }}" class="text-dark" >
                                             <i class="far fa-edit p-2"></i>
                                         </a>
                                     </td>
@@ -40,7 +40,7 @@
                                                 class="btn btn-xs"
                                                 aria-label="Left Align"
                                                 onclick="alertAndDelete(
-                                                    '/home/task/project/{{ $Project->id }}',
+                                                    '{{ route('projects.delete', ['project' => $Project]) }}',
                                                     'project',
                                                     '{{csrf_token()}}')"
                                         >
@@ -50,7 +50,7 @@
                                 </tr>
                                 @endforeach
                             </table>
-                            <div class='offset-md-10'><a href="/home/task/project/create/{{$Task -> id}}" class="btn btn-outline-secondary">新規作成</a></div>
+                            <div class='offset-md-10'><a href="{{ route('projects.create', ['task' => $Task]) }}" class="btn btn-outline-secondary">新規作成</a></div>
                         </div>
                     </div>
                 </div>

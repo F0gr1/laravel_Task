@@ -6,7 +6,7 @@
         <div class="card-header bg-dark text-white text-center">グループ名</div>
         <div class="row　 justify-content-center">
             <div class="col-md-8  p-4">
-                <form action="/home/group/update/{{ $group->id }}" method="post">
+                <form action="{{ route('groups.update', ['group' => $group]) }}" method="post">
                     @csrf
                         <div class="form-group d-flex">
                             <label for="group" class='col-md-3'>グループ名</label>
@@ -16,7 +16,7 @@
                             <label for='name' class='col-md-3' >メンバー</label>
                             <select name="user_id[]" class='form-control' multiple>
                                 @foreach($users as $user)
-                                <option value="{{ $user->id }}" name="user">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}" name="user" @selected($group->users->contains($user->id))>{{ $user->name }}</option>
                                 @endforeach
                             </select>
                         </div>

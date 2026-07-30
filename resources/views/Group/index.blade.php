@@ -16,9 +16,9 @@
                             @foreach($groups as $group)
                             <tr>
                                 <td class = "text-dark">{{$group->group_name}}</td>
-                                <td class = "text-dark">{{$group->SUM}}</td>
+                                <td class = "text-dark">{{$group->users_count}}</td>
                                 <td>
-                                    <a href="/home/group/edit/{{ $group->id }}" class="text-dark" >
+                                    <a href="{{ route('groups.edit', ['group' => $group]) }}" class="text-dark" >
                                         <i class="far fa-edit p-2"></i>
                                     </a>
                                 </td>
@@ -28,7 +28,7 @@
                                             class="btn btn-xs"
                                             aria-label="Left Align"
                                             onclick="alertAndDelete(
-                                                '/group/{{$group->id}}',
+                                                '{{ route('groups.delete', ['group' => $group]) }}',
                                                 'group',
                                                 '{{csrf_token()}}')"
                                     >
@@ -39,7 +39,7 @@
                             @endforeach
                             </table>                       
                             <div class= "offset-md-10">
-                                <a href="/home/group/create" class="btn btn-outline-secondary">新規作成</a></div>
+                                <a href="{{ route('groups.create') }}" class="btn btn-outline-secondary">新規作成</a></div>
                     </div>
                 </div>
             </div>
@@ -48,4 +48,3 @@
 </div>
 
 @endsection
-

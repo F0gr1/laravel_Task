@@ -2,87 +2,92 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreGroupRequest;
+use App\Http\Requests\UpdateGroupRequest;
 use App\Models\Group;
-use App\Models\Project;
-use App\Models\Task;
-use App\Models\UsersGroup;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Pagination\Paginator;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
+
 class GroupController extends Controller
 {
-    public function index()
+    public function index(): View
     {
+        $user = request()->user();
+        $groups = Group::query()
+            ->withCount('users')
+            ->where(function ($query) use ($user) {
+                $query->where('group_leader_id', $user->id)
+                    ->orWhereHas('users', function ($query) use ($user) {
+                        $query->whereKey($user->id);
+                    });
+            })
+            ->latest('id')
+            ->paginate(7);
 
-        $user_id = Auth::id();
-        $subQuery =  DB::table('users_groups')
-                    ->select('group_id',  DB::raw('count(*) AS SUM'))
-                    ->groupBy('group_id');
-        $groups = DB::table('groups')
-                    ->joinSub($subQuery, 'group_query', function ($join) {
-                        $join->on('id', '=', 'group_query.group_id');
-                    })
-                    ->where('group_leader_id' , '=' , $user_id)
-                    ->paginate(7);
         return view('Group/index', compact('groups'));
     }
 
-    public function edit($groupId)
+    public function edit(Group $group): View
     {
-        $group = Group::findOrFail($groupId);
-        $users = User::get();
-        return view('Group/edit', compact('group', 'users'));
+        $this->authorize('update', $group);
+
+        return view('Group/edit', [
+            'group' => $group->load('users'),
+            'users' => User::query()->orderBy('name')->get(),
+        ]);
     }
 
-    public function create()
+    public function create(): View
     {
-        $group = new Group();
-        $user_id = Auth::id();
-        $group->group_leader_id = $user_id;
-        $users = User::get();
-        return view('Group/create', compact('group', 'users'));
+        return view('Group/create', [
+            'group' => new Group(),
+            'users' => User::query()->orderBy('name')->get(),
+        ]);
     }
 
-    public function update(Request $request, $groupid){
-        $group = Group::findOrFail($groupid);
-        $group->group_name = $request->group;
-        $group->save();
-        UsersGroup::where('group_id', '=', $group->id)->delete();
-        foreach($request->user_id as $user_id){
-            $userGroup = new UsersGroup();
-            $userGroup->user_id = $user_id;
-            $userGroup->group_id = $group->id;
-            $userGroup->save();
-        }
-        return $this->index();
-    }
-
-    public function store(Request $request){
-        $group = new Group();
-        $group->group_name = $request->group;
-        $group->group_leader_id = Auth::id();
-        $group->save();
-        foreach($request->user_id as $user_id){
-            $userGroup = new UsersGroup();
-            $userGroup->user_id = $user_id;
-            $userGroup->group_id = $group->id;
-            $userGroup->save();
-        }
-        return $this->index();
-    }
-
-    public function delete($id)
+    public function update(UpdateGroupRequest $request, Group $group): RedirectResponse
     {
-        try{
-            Group::findOrFail($id)->delete();
-            
-        }catch(ModelNotFoundException $e){
-            App::abort(404);
-        }
-        return redirect("/home/group");
+        $group->update(['group_name' => $request->validated('group')]);
+        $group->users()->sync($this->memberIds($request->validated('user_id', []), $group->group_leader_id));
+
+        return redirect()->route('groups.index');
+    }
+
+    public function store(StoreGroupRequest $request): RedirectResponse
+    {
+        $this->authorize('create', Group::class);
+
+        $group = DB::transaction(function () use ($request) {
+            $group = Group::create([
+                'group_name' => $request->validated('group'),
+                'group_leader_id' => $request->user()->id,
+            ]);
+            $group->users()->sync($this->memberIds($request->validated('user_id', []), $request->user()->id));
+
+            return $group;
+        });
+
+        return redirect()->route('groups.index')->with('status', "Group {$group->group_name} created.");
+    }
+
+    public function delete(Group $group): RedirectResponse
+    {
+        $this->authorize('delete', $group);
+
+        DB::transaction(function () use ($group) {
+            $group->load('users');
+            $group->users()->detach();
+            $group->tasks()->update(['group_id' => null]);
+            $group->delete();
+        });
+
+        return redirect()->route('groups.index');
+    }
+
+    private function memberIds(array $memberIds, int $leaderId): array
+    {
+        return collect($memberIds)->push($leaderId)->unique()->values()->all();
     }
 }
