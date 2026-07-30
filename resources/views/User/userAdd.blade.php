@@ -7,7 +7,7 @@
     <div class="card-body">
         <div class="row  justify-content-center">
             <div class="col-md-8 p-4">
-                <form action="/user/add/" method="post">
+                <form action="{{ route('task-viewers.store') }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group d-flex">
                         <label for='name' class='col-md-3'>ユーザー</label>

@@ -15,12 +15,12 @@
                             </tr>
                             @foreach($tasks as $task)
                             <tr>
-                                <td>
-                                    <b><a href="/home/task/{{$task ->id}}" class="text-dark">{{ $task->task }}</a> </b>
+                                    <td>
+                                    <b><a href="{{ route('project', ['task' => $task]) }}" class="text-dark">{{ $task->task }}</a> </b>
                                 </td>
                                 <td class="text-dark">{{ $task->user }}</td>
                                 <td>
-                                    <a href="/home/{{ $task->id }}/edit" class="text-dark">
+                                    <a href="{{ route('tasks.edit', ['task' => $task]) }}" class="text-dark">
                                     <i class="far fa-edit p-2"></i>
                                     </a>
                                 </td>
@@ -28,8 +28,8 @@
                                     <button type="button"
                                             class="btn btn-xs"
                                             aria-label="Left Align"
-                                            onclick="alertAndDelete(
-                                                '/home/{{ $task->task_id }}',
+                                                onclick="alertAndDelete(
+                                                '{{ route('tasks.delete', ['task' => $task]) }}',
                                                 'task',
                                                 '{{csrf_token()}}')"
                                     >
@@ -40,7 +40,7 @@
                             @endforeach
                         </table>
                         <div class= "offset-md-10">
-                            <a href="/home/create" class="btn btn-outline-secondary">新規作成</a>
+                            <a href="{{ route('tasks.create') }}" class="btn btn-outline-secondary">新規作成</a>
                         </div>
                     </div>
                 </div>

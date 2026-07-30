@@ -9,7 +9,6 @@ class Project extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'id',
         'task_id',
         'project',
         'PIC',
@@ -20,7 +19,8 @@ class Project extends Model
         'created_at',
         'updated_at',
     ];
-    public function task(){
-        return $this->belongsTo(Task::class , 'id');
-    } 
+    public function task()
+    {
+        return $this->belongsTo(Task::class, 'task_id');
+    }
 }

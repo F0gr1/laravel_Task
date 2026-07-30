@@ -8,9 +8,6 @@ use Illuminate\Support\Facades\Log;
 
 class RequestLogger
 {
-    private array $excludes = [
-        '_debugger',
-    ];
     /**
      * Handle an incoming request.
      *
@@ -27,10 +24,14 @@ class RequestLogger
     }
 
     private function isWrite(Request $request) : bool{
-        return !in_array($request->path(), $this->excludes, true);
+        return ! $request->isMethod('GET') && ! $request->isMethod('HEAD');
     }
 
     private function write(Request $request): void{
-        Log::debug($request->method(), ['url' => $request->fullUrl(), 'request' => $request->all()]);
+        // Keep credentials and tokens out of both structured logs and URLs.
+        Log::debug('HTTP request', [
+            'method' => $request->method(),
+            'url' => $request->url(),
+        ]);
     }
 }

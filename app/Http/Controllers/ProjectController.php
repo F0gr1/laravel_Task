@@ -2,60 +2,80 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+
 class ProjectController extends Controller
 {
-    public function index($id)
+    public function index(Task $task): View
     {
-        $Task = Task::findOrFail($id);
-        $Projects = DB::table('projects')->where('task_id' , $id)->paginate(7);
-        return view('Project/index', compact('Projects' , 'Task'));
-    }
-    public function detail($id){
-        $Project = Project::findOrFail($id);
-        return view('Project/detail',compact('Project'));
+        $this->authorize('view', $task);
 
-    }
-    public function edit($id)
-    {
-        $Project = Project::findOrFail($id);
-        $users = User::get();
-        return view('Project/edit', compact('Project' , 'users'));
-    }
-    public function update(Request $request , $id)
-    {
-        $Projects = Project::findOrFail($id);
-        $Projects->fill($request->all())->save();
-        $task_id = $Projects->task_id;
-        return  redirect('home/task/' . $task_id);
-    }
-    public function create($id)
-    {
-         // 空の$Projectを渡す
-        $Project = new Project();
-        $Task = Task::findOrFail($id);
-        $users = User::get();
+        $projects = $task->projects()->latest('id')->paginate(7);
 
-        return view('Project/create', compact('Project', 'Task' , 'users'));
+        return view('Project/index', [
+            'Projects' => $projects,
+            'Task' => $task,
+        ]);
     }
 
-    public function store(Request $request)
+    public function detail(Project $project): View
     {
-        $projects = new Project();
-        $projects->fill($request->all())->save();
-        $task_id = $Projects->task_id;
-        return  redirect('home/task/' . $task_id);
+        $this->authorize('view', $project);
+
+        return view('Project/detail', ['Project' => $project]);
     }
-    public function delete($id)
+
+    public function edit(Project $project): View
     {
-        $project = Project::findOrFail($id);
-        $task_id = $project->task_id;
+        $this->authorize('update', $project);
+
+        return view('Project/edit', [
+            'Project' => $project,
+            'users' => User::query()->orderBy('name')->get(),
+        ]);
+    }
+
+    public function update(UpdateProjectRequest $request, Project $project): RedirectResponse
+    {
+        $project->update($request->validated());
+
+        return redirect()->route('project', ['task' => $project->task_id]);
+    }
+
+    public function create(Task $task): View
+    {
+        $this->authorize('view', $task);
+        $this->authorize('create', Project::class);
+
+        return view('Project/create', [
+            'Project' => new Project(['task_id' => $task->id]),
+            'Task' => $task,
+            'users' => User::query()->orderBy('name')->get(),
+        ]);
+    }
+
+    public function store(StoreProjectRequest $request, Task $task): RedirectResponse
+    {
+        $this->authorize('view', $task);
+        $this->authorize('create', Project::class);
+
+        $task->projects()->create($request->validated());
+
+        return redirect()->route('project', ['task' => $task->id]);
+    }
+
+    public function delete(Project $project): RedirectResponse
+    {
+        $this->authorize('delete', $project);
+        $taskId = $project->task_id;
         $project->delete();
-        return  redirect('home/task/'.$task_id);
-    }
 
+        return redirect()->route('project', ['task' => $taskId]);
+    }
 }

@@ -34,7 +34,7 @@
                     <button type="button" onclick="history.back();" class=" btn btn-outline-secondary ">戻る</button>
                 </div>
                 <div class = "col-md-1">
-                    <button type="button" onclick="location.href='/home/task/{{$Project->id}}/edit'" class=" btn btn-outline-secondary">編集</button>
+                     <button type="button" onclick="location.href='{{ route('projects.edit', ['project' => $Project]) }}'" class=" btn btn-outline-secondary">編集</button>
                 </div>
             </div>
         </div>

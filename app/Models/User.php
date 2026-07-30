@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Carbon;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -21,9 +23,10 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'email_verified', 
-        'email_verify_token',
-        
+        'name_pronunciation',
+        'birth_year',
+        'birth_month',
+        'birth_day',
     ];
 
     /**
@@ -34,6 +37,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'email_verify_token',
     ];
 
     /**
@@ -43,14 +47,41 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'email_verified' => 'boolean',
+        'status' => 'integer',
     ];
-    public function view()
+    public function viewers()
     {
-        return $this->hasMany(TaskViewer::class , 'user_id');
+        return $this->hasMany(TaskViewer::class, 'user_id');
     }
-    public function  Group()
+
+    public function groups()
     {
-        return $this->belongsToMany(Group::class, 'users_groups');
-        // ->using(UsersGroup::class , 'user_id');
+        return $this->belongsToMany(Group::class, 'users_groups')->withTimestamps();
+    }
+
+    public function hasVerifiedEmail(): bool
+    {
+        return $this->email_verified_at !== null
+            || (bool) $this->email_verified
+            || (int) $this->status === (int) config('const.USER_STATUS.REGISTER', 1);
+    }
+
+    public function markEmailAsVerified(): bool
+    {
+        if ($this->hasVerifiedEmail() && $this->email_verified_at !== null) {
+            return false;
+        }
+
+        $this->forceFill([
+            'email_verified_at' => Carbon::now(),
+            'email_verified' => true,
+            'status' => (int) config('const.USER_STATUS.REGISTER', 1),
+            'email_verify_token' => null,
+        ])->save();
+
+        event(new Verified($this));
+
+        return true;
     }
 }
