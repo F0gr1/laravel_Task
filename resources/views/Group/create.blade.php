@@ -6,7 +6,7 @@
         <div class="card-header bg-dark text-white text-center">グループ名</div>
         <div class="row  justify-content-center">
             <div class="col-md-8  p-4">
-                <form action="/home/group/store" method="post">
+                <form action="{{ route('groups.store') }}" method="post">
                     @csrf
                         <div class="form-group d-flex">
                             <label for="group" class='col-md-3'>グループ名</label>

@@ -36,6 +36,9 @@ class CreateNewUser implements CreatesNewUsers
             'name' => $input['name'],
             'email' => $input['email'],
             'password' => Hash::make($input['password']),
+            'status' => (int) config('const.USER_STATUS.PRE_REGISTER', 0),
+            'email_verified' => false,
+            'email_verify_token' => null,
         ]);
     }
 }

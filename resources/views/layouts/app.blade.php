@@ -8,8 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -17,7 +16,6 @@
 
     <!-- Styles -->
     <style>.pagination { justify-content: center; }</style> 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/index_app.css') }}" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
 </head>
@@ -54,10 +52,10 @@
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 @if (!Route::is('home'))
-                                    <a class="nav-link" href="/home">タスク一覧</a>
+                                    <a class="nav-link" href="{{ route('home') }}">タスク一覧</a>
                                 @endif
-                                @if (!Route::is('home/group'))
-                                    <a class="nav-link" href="/home/group">グループ一覧</a>
+                                @if (!Route::is('groups.index'))
+                                    <a class="nav-link" href="{{ route('groups.index') }}">グループ一覧</a>
                                 @endif
                                 </div>
                             </li>
@@ -66,7 +64,7 @@
                                     ユーザーを追加
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/user/addPage">
+                                    <a class="dropdown-item" href="{{ route('task-viewers.create') }}">
                                         Myタスクのユーザーの追加
                                     </a>
                                 </div>
@@ -108,7 +106,7 @@
                 fetch(target, {
                     method: 'DELETE',
                     headers: header
-                });
+                }).then(() => window.location.reload());
             }
         }
     </script>

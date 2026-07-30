@@ -20,4 +20,9 @@ class TaskViewer extends Model
     {
         return $this->belongsTo(User::class , 'user_id');
     }
+
+    public function isManagedBy(User $user): bool
+    {
+        return $this->task !== null && $this->task->isManagedBy($user);
+    }
 }

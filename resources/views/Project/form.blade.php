@@ -8,9 +8,9 @@
         <div class="row">
             <div class="col-md-8">
             @if($target == 'store')
-                <form action="/home/task/{$Task->id}}" method="post">
+                <form action="{{ route('projects.store', ['task' => $Task]) }}" method="post">
                 @elseif($target == 'update')
-                <form action="/home/task/{{$Project->id}}" method="post">
+                <form action="{{ route('projects.update', ['project' => $Project]) }}" method="post">
                     <input type="hidden" name="_method" value="PUT">
                 @endif
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -18,15 +18,6 @@
                         <label for="name" class='col-md-3'>タスク名</label>
                         <input type="text" class="form-control" name="project" value="{{ $Project->project }}">
                     </div>
-                    @if($target == 'store')
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="task_id" value="{{ $Task->id}}">
-                        </div>
-                    @elseif ($target == 'update')
-                        <div class="form-group">
-                            <input type="hidden" class="form-control" name="task_id" value="{{ $Project->task_id}}">
-                        </div>
-                    @endif
                     <!-- <div class="form-group">
                         <label for="User">ユーザー</label>
                         <input type="text" class="form-control" name="User" value="{{ $Project->User }}">
@@ -35,7 +26,7 @@
                         <label for="PIC" class='col-md-3'>担当者</label>
                         <select name="PIC"   class='form-control' value="{{$Project -> PIC}}">
                             @foreach($users as $user)
-                                <option name="PIC">{{$user->name}}</option>
+                                <option value="{{$user->name}}" @selected($Project->PIC === $user->name)>{{$user->name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -56,7 +47,7 @@
                         <input type="date" class="form-control" name="end_date" value="{{ $Project->end_date }}">
                     </div>
                     <div class="d-flex">
-                        <a href="/home/" class='col-md-2 text-dark pt-2  offset-md-11'>戻る</a>
+                        <a href="{{ route('home') }}" class='col-md-2 text-dark pt-2  offset-md-11'>戻る</a>
                         <button type="submit" class="btn btn-outline-secondary col-md-1">登録</button>
                     </div>
                 </form>

@@ -1,0 +1,8 @@
+.env
+.git
+.gitignore
+.ai-worklog
+bootstrap/cache/*
+node_modules
+vendor
+storage/logs/*.log

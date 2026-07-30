@@ -54,6 +54,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'name' => $input['name'],
             'email' => $input['email'],
             'email_verified_at' => null,
+            'email_verified' => false,
+            'status' => (int) config('const.USER_STATUS.PRE_REGISTER', 0),
+            'email_verify_token' => null,
         ])->save();
 
         $user->sendEmailVerificationNotification();
